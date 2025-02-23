@@ -1,5 +1,13 @@
 <?php 
   require "inc/config.php";
+  require "inc/function.php";
+
+
+  if(isset($_SESSION['ADMIN_ID']) && isset($_SESSION['ADMIN_LOGIN']))
+  {
+      redirect('dashboard');
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +43,24 @@
       if(isset($_POST['login_btn']))
       {
         $form_data = filtration($_POST);
+
+        $sql = "SELECT * FROM `admin_cred` WHERE `name` = ? AND `password` = ?";
+        $data_types = "ss";
+        $values = [$form_data['admin_name'], $form_data['admin_pass']];
+
+        $result = select($sql, $data_types, $values);
+        if($result->num_rows > 0)
+        {
+          $row = $result->fetch_assoc();
+          $_SESSION['ADMIN_ID'] = $row['id'];
+          $_SESSION['ADMIN_LOGIN'] = true;
+
+          redirect("dashboard");
+        }
+        else 
+        {
+          alert("error", "Invalid login credential");
+        }
 
       }
     ?>  

@@ -37,3 +37,10 @@ input[type=number] {
         border: 1px solid var(--teal-hover) !important;
     }
 }
+
+.custom-alert
+{
+    position: fixed !important;
+    top: 25px;
+    right: 25px;
+}
