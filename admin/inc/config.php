@@ -31,12 +31,31 @@ function select($sql, $data_types, $values)
         $result = $res->get_result();
         $res->close();
         return $result;
-
-
     }
     else 
     {
         $error = "Query execution failed - Select";
+        $res->close();
+        return $error;
+    }
+}
+
+function update($sql, $data_types, $values)
+{
+    $conn = $GLOBALS['conn'];
+
+    $res = $conn->prepare($sql);
+    $res->bind_param($data_types, ...$values);
+    if($res->execute())
+    {
+        $result = $conn->affected_rows;
+
+        $res->close();
+        return $result;
+    }
+    else 
+    {
+        $error = "Query execution failed - Update";
         $res->close();
         return $error;
     }

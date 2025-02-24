@@ -44,3 +44,23 @@ input[type=number] {
     top: 25px;
     right: 25px;
 }
+
+.customSideMenu
+{
+    position: fixed;
+    height: 100%;
+    z-index: 11;
+}
+
+@media (max-width : 991px) 
+{
+    .customSideMenu
+    {
+        height: auto;
+        width: 100%;
+    } 
+    #main_content 
+    {
+        margin-top: 70px;
+    } 
+}
