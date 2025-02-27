@@ -9,7 +9,6 @@ function adminLogin()
         window.location.assign('index');
         </script>"; 
     }
-    session_regenerate_id(true);
 }
 
 function redirect($url)

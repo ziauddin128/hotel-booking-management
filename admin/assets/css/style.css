@@ -43,6 +43,7 @@ input[type=number] {
     position: fixed !important;
     top: 25px;
     right: 25px;
+    z-index: 99;
 }
 
 .customSideMenu

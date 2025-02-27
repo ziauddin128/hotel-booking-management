@@ -16,7 +16,7 @@
 <body class="bg-light">
 
   <!-- top bar -->
-  <section class="container-fluid py-2 bg-dark text-white d-flex align-items-center justify-content-between position-sticky top-0">
+  <section class="container-fluid py-2 bg-dark text-white d-flex align-items-center justify-content-between position-sticky top-0 z-2">
     <a href="#" class="h-font text-white fs-3 text-decoration-none">TJ HOTEL</a>
     <a href="logout" class="btn btn-light btn-sm">Logout</a>
   </section>  
