@@ -62,6 +62,82 @@
     $result = update($sql, $data_types, $values);
     echo $result; 
   }
+  
+  if(isset($_POST['action']) && $_POST['action'] == "add_management_team")
+  {
+    $form_data = filtration($_POST);
 
+    $image_res = upload_image($_FILES['member_picture'], "about/");
+
+    if($image_res == "invalid_format")
+    {
+      echo $image_res;
+    }
+    else if($image_res == "invalid_size")
+    {
+      echo $image_res;
+    }
+    else if($image_res == "upload_failed")
+    {
+      echo $image_res;
+    }
+    else 
+    {
+      $sql = "INSERT INTO `team_details`(`member_name`, `member_picture`) VALUES (?,?)";
+      $data_types = "ss";
+      $values = [$form_data['member_name'], $image_res];
+      $result = insert($sql, $data_types, $values);
+  
+      echo $result;
+    }
+  
+  }
+
+  if(isset($_POST['get_members']))
+  {
+    $res = selectAll('team_details');
+
+    $html = '';
+    while ($row = mysqli_fetch_assoc($res)) 
+    {
+      $html .='<div class="col-sm-6 col-md-3 col-xl-2 mb-3">
+                <div class="card">
+                  <img src="'.SITE_PATH.'assets/images/about/'.$row['member_picture'].'" style="height: 220px; object-fit: cover; object-position: center">
+                  <div class="card-img-overlay text-end">
+                     <button class="btn btn-danger shadow-none" onclick="remove_member('.$row['id'].')"><i class="bi bi-trash"></i> Delete</button>
+                  </div>
+                  <h5 class="card-title text-center text-white bg-dark m-0 py-2 px-2">'.$row['member_name'].'</h5>
+                </div>
+              </div>';
+    }
+
+    echo $html;
+  }
+
+  if(isset($_POST['action']) && $_POST['action'] == "remove_member")
+  {
+    $form_data = filtration($_POST);
+
+    $sql = "SELECT * FROM `team_details` WHERE `id` = ?";
+    $data_types = 'i';
+    $values = [$form_data['id']];
+    $res = select($sql, $data_types, $values);
+    $row = $res->fetch_assoc();
+
+    $is_delete = deleteImage($row['member_picture'], "about/");
+
+    if($is_delete)
+    {
+      $sql = "DELETE FROM `team_details` WHERE `id` = ?";
+      $result = delete($sql, $data_types, $values);
+      echo $result; 
+    }
+    else 
+    {
+      echo 0;
+    }
+
+  }
+  
 
 ?>

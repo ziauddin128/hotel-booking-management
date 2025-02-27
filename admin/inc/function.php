@@ -1,5 +1,12 @@
 <?php 
 
+// for front-end image 
+
+define('SITE_PATH', "http://localhost/hotel/");
+
+// for backend image upload
+
+define('UPLOAD_IMAGE_PATH', $_SERVER["DOCUMENT_ROOT"]."/hotel/assets/images/");
 
 function adminLogin()
 {
@@ -28,5 +35,48 @@ function alert($type, $message)
      </div>';
 }
 
+function upload_image($image, $folder)
+{
+    $valid_mime = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'];
+    $img_mime = $image['type'];
+
+    if(!in_array($img_mime, $valid_mime))
+    {
+        return 'invalid_format'; //Invalid image format or mime
+    }
+    else if($image['size'] > 2097152)
+    {
+        return 'invalid_size'; //Max size 2MB
+    }
+    else 
+    {
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $file_name = "IMG_".rand(10000,99999).".$extension";
+
+        $folder_path = UPLOAD_IMAGE_PATH.$folder.$file_name;
+
+        if(move_uploaded_file($image['tmp_name'], $folder_path))
+        {
+            return $file_name;
+        }
+        else 
+        {
+            return 'upload_failed'; 
+        }
+    }
+
+}
+
+function deleteImage($image, $folder)
+{
+    if(unlink(UPLOAD_IMAGE_PATH.$folder.$image))
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
 
 ?>

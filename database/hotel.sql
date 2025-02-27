@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2025 at 08:11 AM
+-- Generation Time: Feb 27, 2025 at 11:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,6 +43,32 @@ INSERT INTO `admin_cred` (`id`, `name`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts_det`
+--
+
+CREATE TABLE `contacts_det` (
+  `id` int(11) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `gmap` varchar(500) DEFAULT NULL,
+  `phn1` varchar(50) DEFAULT NULL,
+  `phn2` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `fb` varchar(100) DEFAULT NULL,
+  `insta` varchar(100) NOT NULL,
+  `tw` varchar(100) NOT NULL,
+  `iframe` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contacts_det`
+--
+
+INSERT INTO `contacts_det` (`id`, `address`, `gmap`, `phn1`, `phn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
+(1, 'Dhaka, Bangladesh', 'https://maps.app.goo.gl/TpuEg8M3yca15Uz17', '+8801578457845', '+8801578457846', 'tjhotel@gmail.com', 'https://www.fb.com/tjhotel', 'https://www.instagram.com/tjhotel', 'https://www.twitter.com/tjhotel', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17574.9557016029!2d91.39517049999999!3d23.03082315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753685a3edbeb99%3A0x319f9ae6bf1bfd99!2sReverse%20Club%20Ground!5e1!3m2!1sen!2sbd!4v1740684136665!5m2!1sen!2sbd');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `settings`
 --
 
@@ -58,7 +84,28 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'Z Hotel', 'Z Hotel Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 0);
+(1, 'TJ HOTEL', 'davv', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_details`
+--
+
+CREATE TABLE `team_details` (
+  `id` int(11) NOT NULL,
+  `member_name` varchar(100) DEFAULT NULL,
+  `member_picture` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `team_details`
+--
+
+INSERT INTO `team_details` (`id`, `member_name`, `member_picture`) VALUES
+(4, 'zia uddin', 'IMG_47122.jpg'),
+(5, 'Rana Mahmud', 'IMG_99583.jpg'),
+(7, 'Raju Mondol', 'IMG_49313.jpg');
 
 --
 -- Indexes for dumped tables
@@ -71,9 +118,21 @@ ALTER TABLE `admin_cred`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contacts_det`
+--
+ALTER TABLE `contacts_det`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `team_details`
+--
+ALTER TABLE `team_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -87,10 +146,22 @@ ALTER TABLE `admin_cred`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `contacts_det`
+--
+ALTER TABLE `contacts_det`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `team_details`
+--
+ALTER TABLE `team_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

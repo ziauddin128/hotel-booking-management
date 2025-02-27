@@ -20,6 +20,13 @@ function filtration($data)
     return $data;
 }
 
+function selectAll($table)
+{
+    $conn = $GLOBALS['conn'];
+    $res = mysqli_query($conn, "SELECT * FROM `$table`");
+    return $res;
+}
+
 function select($sql, $data_types, $values)
 {
     $conn = $GLOBALS['conn'];
@@ -61,5 +68,46 @@ function update($sql, $data_types, $values)
     }
 }
 
+function insert($sql, $data_types, $values)
+{
+    $conn = $GLOBALS['conn'];
+
+    $res = $conn->prepare($sql);
+    $res->bind_param($data_types, ...$values);
+    if($res->execute())
+    {
+        $result = $conn->affected_rows;
+
+        $res->close();
+        return $result;
+    }
+    else 
+    {
+        $error = "Query execution failed - Insert";
+        $res->close();
+        return $error;
+    }
+}
+
+function delete($sql, $data_types, $values)
+{
+    $conn = $GLOBALS['conn'];
+
+    $res = $conn->prepare($sql);
+    $res->bind_param($data_types, ...$values);
+    if($res->execute())
+    {
+        $result = $conn->affected_rows;
+
+        $res->close();
+        return $result;
+    }
+    else 
+    {
+        $error = "Query execution failed - Delete";
+        $res->close();
+        return $error;
+    }
+}
 
 ?>

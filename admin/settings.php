@@ -79,7 +79,7 @@
         </div>
 
         <!-- contact settings -->
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h5 class="card-title m-0">Contact Settings</h5>
@@ -201,6 +201,65 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" onclick="contacts_inp_show(contacts_data)" class="btn shadow-none" data-bs-dismiss="modal">CANCEL</button>
+                  <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- management team -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h5 class="card-title m-0">Management Team</h5>
+              <button type="button" class="btn btn-dark btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#management-s">
+                <i class="bi bi-pencil-square"></i> Add
+              </button>
+            </div>
+
+            <div class="row" id="team_data">
+
+              <!-- <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                  <img src="../assets/images/about.jpg" style="height: 220px; object-fit: cover; object-position: center">
+                  <div class="card-img-overlay text-end">
+                     <button class="btn btn-danger shadow-none"><i class="bi bi-trash"></i> Delete</button>
+                  </div>
+                  <h5 class="card-title text-center text-white bg-dark m-0 py-2 px-2">Random Text</h5>
+                </div>
+              </div> -->
+
+            </div>
+
+            
+          </div>
+        </div>
+
+        <!-- management team Modal -->
+        <div class="modal fade" id="management-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Management Team</h1>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <form id="management_s_form">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control shadow-none" name="member_name" id="member_name_inp" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Picture</label>
+                    <input type="file" class="form-control shadow-none" name="member_picture" id="member_picture_inp" required>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn shadow-none" data-bs-dismiss="modal">CANCEL</button>
                   <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
                 </div>
               </form>
@@ -388,10 +447,88 @@
 
     })
 
+    let management_s_form = document.querySelector("#management_s_form");
+    management_s_form.addEventListener("submit", function(event)
+    {
+      event.preventDefault();
+
+      let form_data = new FormData(this);
+      form_data.append("action", "add_management_team");
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "ajax/settings_crud.php");
+
+      xhr.onload = function()
+      {
+        const modalElement = document.getElementById('management-s');
+        const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+        modalInstance.hide();
+       
+        if(this.responseText == "invalid_format")
+        {
+          alert("error", "Only jpg, png, jpeg, webp are allowed!");
+        }
+        else if(this.responseText == "invalid_size")
+        {
+          alert("error", "Image size must be lower than 2MB!");
+        }
+        else if(this.responseText == "upload_failed")
+        {
+          alert("error", "Server Down");
+        }
+        else
+        {
+          alert("success", "Team member added!");
+          management_s_form.reset();
+
+          get_members();
+        }
+      }
+
+      xhr.send(form_data);
+
+    })
+
+    function get_members()
+    {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "ajax/settings_crud.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onload = function()
+      {
+        document.querySelector("#team_data").innerHTML = this.responseText;
+      }
+
+      xhr.send("get_members");
+    }
+
+    function remove_member(id)
+    {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "ajax/settings_crud.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onload = function()
+      {
+        if(this.responseText == "1")
+        {
+          alert("success", "Member Deleted!");
+          get_members();
+        }
+        else
+        {
+          alert("error", "Server Down!");
+        }
+      }
+      xhr.send("id="+id+"&action=remove_member");
+    }
+
     window.onload = function()
     {
       get_general();
       get_contacts();
+      get_members();
     }
   </script>
 
