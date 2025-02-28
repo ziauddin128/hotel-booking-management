@@ -1,3 +1,16 @@
+<?php 
+    require "admin/inc/config.php";
+    require "admin/inc/function.php";
+
+    //contact details
+
+    $sql = "SELECT * FROM `contacts_det` WHERE `id` = ?";
+    $data_types = 'i';
+    $values = [1];
+    $contact_res = select($sql, $data_types, $values);
+    $contact_row = $contact_res->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,28 +28,32 @@
 <body class="bg-light">
 
     <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg bg-white px-lg-4 py-lg-2 shadow-sm sticky-top">
+    <nav id="nav-bar" class="navbar navbar-expand-lg bg-white px-lg-4 py-lg-2 shadow-sm sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand h-font fs-3 fw-bold me-5" href="#">TJ HOTEL</a>
+            <a class="navbar-brand h-font fs-3 fw-bold me-5" href="index">TJ HOTEL</a>
             <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active me-3" href="#">Home</a>
+                      <a class="nav-link me-3" href="index">Home</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link me-3" href="#">Rooms</a>
+                      <a class="nav-link me-3" href="about">About</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link me-3" href="#">Facilities</a>
+                    <a class="nav-link me-3" href="rooms">Rooms</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link me-3" href="facilities">Facilities</a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="contact">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">

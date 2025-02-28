@@ -4,6 +4,8 @@
 
 define('SITE_PATH', "http://localhost/hotel/");
 
+define('IMAGE_PATH', SITE_PATH."assets/images/");
+
 // for backend image upload
 
 define('UPLOAD_IMAGE_PATH', $_SERVER["DOCUMENT_ROOT"]."/hotel/assets/images/");

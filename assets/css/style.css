@@ -90,3 +90,11 @@ input[type=number] {
     transform: translateY(-4px);
     border-top-color: var(--teal) !important;
 }
+
+.custom-alert
+{
+    position: fixed !important;
+    top: 80px;
+    right: 25px;
+    z-index: 99999;
+}

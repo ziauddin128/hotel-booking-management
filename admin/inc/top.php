@@ -24,7 +24,7 @@
   <!-- slide menu -->
   <div class="col-lg-2 bg-dark border-top border-3 border-secondary py-2 py-lg-3 px-2 customSideMenu">
   
-    <nav class="navbar navbar-expand-lg bg-dark  text-white">
+    <nav id="nav-bar" class="navbar navbar-expand-lg bg-dark text-white">
         <div class="container-fluid flex-row flex-lg-column align-items-baseline p-0">
             <h4 class="my-0">Admin Panel</h4>
             <button class="navbar-toggler shadow-none navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#adminDropdown">
@@ -36,10 +36,10 @@
                   <a class="nav-link text-white" href="dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">Rooms</a>
+                  <a class="nav-link text-white" href="user-queries">User Queries</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">Users</a>
+                  <a class="nav-link text-white" href="carousel">Carousel</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-white" href="settings">Settings</a>

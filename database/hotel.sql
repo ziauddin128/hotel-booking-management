@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2025 at 11:31 PM
+-- Generation Time: Feb 28, 2025 at 08:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,6 +39,26 @@ CREATE TABLE `admin_cred` (
 
 INSERT INTO `admin_cred` (`id`, `name`, `password`) VALUES
 (1, 'admin', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carousel`
+--
+
+CREATE TABLE `carousel` (
+  `id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `carousel`
+--
+
+INSERT INTO `carousel` (`id`, `image`) VALUES
+(2, 'IMG_10381.jpg'),
+(3, 'IMG_10596.jpg'),
+(4, 'IMG_90795.jpg');
 
 -- --------------------------------------------------------
 
@@ -105,7 +125,24 @@ CREATE TABLE `team_details` (
 INSERT INTO `team_details` (`id`, `member_name`, `member_picture`) VALUES
 (4, 'zia uddin', 'IMG_47122.jpg'),
 (5, 'Rana Mahmud', 'IMG_99583.jpg'),
-(7, 'Raju Mondol', 'IMG_49313.jpg');
+(7, 'Raju Mondol', 'IMG_49313.jpg'),
+(8, 'Jahir Rayhan', 'IMG_63928.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_queries`
+--
+
+CREATE TABLE `user_queries` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `seen` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -115,6 +152,12 @@ INSERT INTO `team_details` (`id`, `member_name`, `member_picture`) VALUES
 -- Indexes for table `admin_cred`
 --
 ALTER TABLE `admin_cred`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `carousel`
+--
+ALTER TABLE `carousel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -136,6 +179,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_queries`
+--
+ALTER TABLE `user_queries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -144,6 +193,12 @@ ALTER TABLE `team_details`
 --
 ALTER TABLE `admin_cred`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `carousel`
+--
+ALTER TABLE `carousel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `contacts_det`
@@ -161,7 +216,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `team_details`
 --
 ALTER TABLE `team_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `user_queries`
+--
+ALTER TABLE `user_queries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -70,40 +70,22 @@
 
         <div class="swiper managementSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide my-2 ">
-                    <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
-                        <img class="w-100" src="https://images.pexels.com/photos/5371584/pexels-photo-5371584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                        <h4 class="mt-3">Team Member 1</h4>
-                    </div>
-                </div>
 
-                <div class="swiper-slide my-2 ">
-                    <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
-                        <img class="w-100" src="https://images.pexels.com/photos/5371584/pexels-photo-5371584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                        <h4 class="mt-3">Team Member 1</h4>
+                <?php 
+                  $team_res = selectAll('team_details');
+                  while ($team_row = $team_res->fetch_assoc()) 
+                  {
+                    ?>
+                    <div class="swiper-slide my-2">
+                        <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
+                            <img class="w-100" style="height: 220px; object-fit: cover" src="<?= IMAGE_PATH ?>about/<?= $team_row['member_picture'] ?>">
+                            <h4 class="mt-3"><?= $team_row['member_name'] ?></h4>
+                        </div>
                     </div>
-                </div>
+                    <?php 
+                  }
+                ?>
 
-                <div class="swiper-slide my-2 ">
-                    <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
-                        <img class="w-100" src="https://images.pexels.com/photos/5371584/pexels-photo-5371584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                        <h4 class="mt-3">Team Member 1</h4>
-                    </div>
-                </div>
-
-                <div class="swiper-slide my-2 ">
-                    <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
-                        <img class="w-100" src="https://images.pexels.com/photos/5371584/pexels-photo-5371584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                        <h4 class="mt-3">Team Member 1</h4>
-                    </div>
-                </div>
-
-                <div class="swiper-slide my-2 ">
-                    <div class="bg-white shadowrounded overflow-hidden p-3 text-center">
-                        <img class="w-100" src="https://images.pexels.com/photos/5371584/pexels-photo-5371584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                        <h4 class="mt-3">Team Member 1</h4>
-                    </div>
-                </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>

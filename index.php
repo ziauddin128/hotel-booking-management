@@ -2,23 +2,22 @@
  require "top.php";
 ?> 
 
-<!-- home slider -->
+<!-- carousel -->
 <section class="home_slider mt-4 px-lg-4">
     <div class="container-fluid">
         <div class="swiper homeSlider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="assets/images/home-slider/1.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="assets/images/home-slider/2.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="assets/images/home-slider/3.jpg"/>
-                </div>
-                <div class="swiper-slide">
-                    <img src="assets/images/home-slider/4.jpg"/>
-                </div>
+                <?php 
+                 $carousel_res = selectAll('carousel');
+                 while($carousel_row = $carousel_res->fetch_assoc())
+                 {
+                    ?>
+                    <div class="swiper-slide">
+                        <img src="<?= IMAGE_PATH ?>carousel/<?= $carousel_row['image'] ?>"/>
+                    </div>
+                    <?php 
+                 }
+                ?>
             </div>
         </div>
     </div>
@@ -400,6 +399,7 @@
     });
 </script>
 
+
 <!-- reach us -->
 <section class="reach_us py-5">
     <div class="container">
@@ -407,34 +407,34 @@
 
         <div class="row">
             <div class="col-md-8">
-                <iframe width="100%" height="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17637.751539051675!2d91.65767756226288!3d22.544391590228916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acccb300038f6f%3A0xb481266e22127949!2zQmFuc2hiYXJpYSBTZWEgQmVhY2gg4Kas4Ka-4KaB4Ka24Kas4Ka-4Kec4Ka_4Kef4Ka-IOCmuOCmruCngeCmpuCnjeCmsCDgprjgp4jgppXgpqQ!5e1!3m2!1sen!2sbd!4v1739979921788!5m2!1sen!2sbd" style="border:0;" loading="lazy"></iframe>
+                <iframe width="100%" height="100%" src="<?= $contact_row['iframe'] ?>" style="border:0;" loading="lazy"></iframe>
             </div>
             <div class="col-md-4">
                 <div class="bg-white p-4 rounded shadow mt-4 mt-md-0 mb-4">
                     <h4>Call Us</h4>
-                    <a href="#" class="d-flex align-items-center my-3 text-decoration-none text-dark">
+                    <a href="tel: <?= $contact_row['phn1'] ?>" class="d-flex align-items-center my-3 text-decoration-none text-dark">
                         <i class="bi bi-telephone me-2"></i>
-                        +01531454578
+                        <?= $contact_row['phn1'] ?>
                     </a>
-                    <a href="#" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
+                    <a href="tel:  <?= $contact_row['phn2'] ?>" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
                         <i class="bi bi-telephone me-2"></i>
-                        +01531454578
+                        <?= $contact_row['phn2'] ?>
                     </a>
                 </div>
 
                 <div class="bg-white p-4 rounded shadow">
                     <h4>Follow Us</h4>
-                    <a href="#" class="d-flex align-items-center my-3 text-decoration-none text-dark">
-                        <i class="bi bi-twitter-x me-2"></i>
-                        X
-                    </a>
-                    <a href="#" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
+                    <a href="<?= $contact_row['fb'] ?>" target="_blank" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
                         <i class="bi bi-facebook me-2"></i>
                         Facebook
                     </a>
-                    <a href="#" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
+                    <a href="<?= $contact_row['insta'] ?>" target="_blank" class="d-flex align-items-center mt-3 text-decoration-none text-dark">
                         <i class="bi bi-instagram me-2"></i>
                         Instagram
+                    </a>
+                    <a href="<?= $contact_row['tw'] ?>" target="_blank" class="d-flex align-items-center my-3 text-decoration-none text-dark">
+                        <i class="bi bi-twitter-x me-2"></i>
+                        Twitter
                     </a>
                 </div>
             </div>
