@@ -69,6 +69,38 @@ function upload_image($image, $folder)
 
 }
 
+function uploadSVGimage($image, $folder)
+{
+    $valid_mime = ['image/svg+xml'];
+    $img_mime = $image['type'];
+
+    if(!in_array($img_mime, $valid_mime))
+    {
+        return 'invalid_format'; //Invalid image format or mime
+    }
+    else if($image['size'] > 1048576)
+    {
+        return 'invalid_size'; //Max size 1MB
+    }
+    else 
+    {
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $file_name = "IMG_".rand(10000,99999).".$extension";
+
+        $folder_path = UPLOAD_IMAGE_PATH.$folder.$file_name;
+
+        if(move_uploaded_file($image['tmp_name'], $folder_path))
+        {
+            return $file_name;
+        }
+        else 
+        {
+            return 'upload_failed'; 
+        }
+    }
+
+}
+
 function deleteImage($image, $folder)
 {
     if(unlink(UPLOAD_IMAGE_PATH.$folder.$image))

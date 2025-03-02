@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2025 at 08:48 PM
+-- Generation Time: Mar 02, 2025 at 08:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,6 +89,46 @@ INSERT INTO `contacts_det` (`id`, `address`, `gmap`, `phn1`, `phn2`, `email`, `f
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `id` int(11) NOT NULL,
+  `facility_icon` varchar(100) DEFAULT NULL,
+  `facility_name` varchar(100) DEFAULT NULL,
+  `facility_desc` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`id`, `facility_icon`, `facility_name`, `facility_desc`) VALUES
+(2, 'IMG_23576.svg', 'Wifi', 'description'),
+(3, 'IMG_95747.svg', 'Wifi 2', 'abvavavdbkvdab adbkdvbkdavb dab');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `features`
+--
+
+CREATE TABLE `features` (
+  `id` int(11) NOT NULL,
+  `feature_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `features`
+--
+
+INSERT INTO `features` (`id`, `feature_name`) VALUES
+(4, 'avvdvddavvda'),
+(5, 'davvd');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `settings`
 --
 
@@ -167,6 +207,18 @@ ALTER TABLE `contacts_det`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `features`
+--
+ALTER TABLE `features`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -205,6 +257,18 @@ ALTER TABLE `carousel`
 --
 ALTER TABLE `contacts_det`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `features`
+--
+ALTER TABLE `features`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings`

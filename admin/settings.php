@@ -212,24 +212,15 @@
         <!-- management team -->
         <div class="card border-0 shadow-sm">
           <div class="card-body">
+
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h5 class="card-title m-0">Management Team</h5>
               <button type="button" class="btn btn-dark btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#management-s">
-                <i class="bi bi-pencil-square"></i> Add
+                <i class="bi bi-plus-square"></i> Add
               </button>
             </div>
 
             <div class="row" id="team_data">
-
-              <!-- <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
-                  <img src="../assets/images/about.jpg" style="height: 220px; object-fit: cover; object-position: center">
-                  <div class="card-img-overlay text-end">
-                     <button class="btn btn-danger shadow-none"><i class="bi bi-trash"></i> Delete</button>
-                  </div>
-                  <h5 class="card-title text-center text-white bg-dark m-0 py-2 px-2">Random Text</h5>
-                </div>
-              </div> -->
 
             </div>
 

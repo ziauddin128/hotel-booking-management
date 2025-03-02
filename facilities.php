@@ -11,67 +11,23 @@
 
         <div class="row">
 
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
+            <?php 
+              $facility_res = selectAll('facilities');
+              while ($facility_row = mysqli_fetch_assoc($facility_res)) 
+              {
+                ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <img src="<?= IMAGE_PATH ?>facilities/<?= $facility_row['facility_icon'] ?>" width="50px">
+                            <h4 class="m-0"><?= $facility_row['facility_name'] ?></h4>
+                        </div>
+                        <p><?= $facility_row['facility_desc'] ?></p>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
                 </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-white shadow rounded border-top border-4 border-dark facilities-item p-4 mb-3">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="assets/images/facilities/wifi.png" width="50px">
-                        <h4 class="m-0">Wifi</h4>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eaque dignissimos quod non eos illo ea, praesentium possimus libero voluptate?</p>
-                </div>
-            </div>
-
-            
+                <?php
+              }
+            ?>
            
         </div>
 
