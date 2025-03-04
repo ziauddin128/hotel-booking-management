@@ -36,6 +36,9 @@
                   <a class="nav-link text-white" href="dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link text-white" href="rooms">Rooms</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link text-white" href="features-facilities">Features-Facilities</a>
                 </li>
                 <li class="nav-item">

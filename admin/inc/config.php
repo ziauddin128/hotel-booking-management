@@ -12,12 +12,20 @@ function filtration($data)
 {
     foreach ($data as $key => $value) 
     {
-        $value = trim($value);
-        $value = stripslashes($value);
-        $value = strip_tags($value);
-        $value = htmlspecialchars($value);
-
-        $data[$key] = $value;
+        if (is_array($value)) 
+        {
+            $data[$key] = filtration($value);
+        }
+        else 
+        {
+            $value = trim($value);
+            $value = stripslashes($value);
+            $value = strip_tags($value);
+            $value = htmlspecialchars($value);
+    
+            $data[$key] = $value;
+        }
+       
     }
     return $data;
 }
