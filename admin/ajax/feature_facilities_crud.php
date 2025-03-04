@@ -43,12 +43,20 @@
   {
     $form_data = filtration($_POST);
 
+    $q1 = "SELECT * FROM `room_features` WHERE `feature_id`= ?";
     $data_types = 'i';
     $values = [$form_data['id']];
-
-    $sql = "DELETE FROM `features` WHERE `id` = ?";
-    $result = delete($sql, $data_types, $values);
-    echo $result; 
+    $res1 = select($q1, $data_types, $values);
+    if($res1->num_rows > 0)
+    {
+      echo "exist"; 
+    }
+    else 
+    {
+      $sql = "DELETE FROM `features` WHERE `id` = ?";
+      $result = delete($sql, $data_types, $values);
+      echo $result; 
+    }
 
   }
 
@@ -113,23 +121,33 @@
   {
     $form_data = filtration($_POST);
 
-    $sql = "SELECT * FROM `facilities` WHERE `id` = ?";
+
+    $q1 = "SELECT * FROM `room-facilities` WHERE `facilities_id`= ?";
     $data_types = 'i';
     $values = [$form_data['id']];
-    $res = select($sql, $data_types, $values);
-    $row = $res->fetch_assoc();
-
-    $is_delete = deleteImage($row['facility_icon'], "facilities/");
-
-    if($is_delete)
+    $res1 = select($q1, $data_types, $values);
+    if($res1->num_rows > 0)
     {
-      $sql = "DELETE FROM `facilities` WHERE `id` = ?";
-      $result = delete($sql, $data_types, $values);
-      echo $result; 
+      echo "exist"; 
     }
     else 
     {
-      echo 0;
+      $sql = "SELECT * FROM `facilities` WHERE `id` = ?";
+      $res = select($sql, $data_types, $values);
+      $row = $res->fetch_assoc();
+  
+      $is_delete = deleteImage($row['facility_icon'], "facilities/");
+  
+      if($is_delete)
+      {
+        $sql = "DELETE FROM `facilities` WHERE `id` = ?";
+        $result = delete($sql, $data_types, $values);
+        echo $result; 
+      }
+      else 
+      {
+        echo 0;
+      }
     }
 
   } 

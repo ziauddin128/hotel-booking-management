@@ -459,6 +459,9 @@
 
       xhr.onload = function()
       {
+
+        room_edit_form.reset();
+
         let data = JSON.parse(this.responseText);
         document.querySelector("#room_title").innerText = data.room_data.name;
         room_edit_form.elements['name'].value = data.room_data.name;

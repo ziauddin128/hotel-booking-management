@@ -138,7 +138,6 @@
 
 
   <script>
-
     //features
     let feature_s_form = document.querySelector("#feature_s_form");
     feature_s_form.addEventListener("submit", function(event)
@@ -198,6 +197,10 @@
         {
           alert('success', 'Feature Deleted!');
           get_features();
+        }
+        else if(this.responseText == "exist")
+        {
+          alert('error', 'Feature exist for room!');
         }
         else 
         {
@@ -276,6 +279,10 @@
         {
           alert('success', 'Facility Deleted!');
           get_facilities();
+        }
+        else if(this.responseText == "exist")
+        {
+          alert('error', 'Facility exist for room!');
         }
         else 
         {
