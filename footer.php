@@ -43,6 +43,61 @@
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+
+    <script>
+        let register_form = document.querySelector("#register_form");
+        register_form.addEventListener("submit", function(e)
+        {
+            e.preventDefault();
+
+            let form_data = new FormData(this);
+            form_data.append("action", "register");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php");
+
+            xhr.onload = function()
+            {
+
+                const modalElement = document.getElementById('registerModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+                modalInstance.hide();
+
+                if(this.responseText == "password_mismatch")
+                {
+                    alert("error", "Password & Confirm Password Mismatch!");
+                }
+                else if(this.responseText == "user_exist")
+                {
+                    alert("error", "Email or Phone Number already exist!");
+                }
+                else if(this.responseText == "invalid_format")
+                {
+                    alert("error", "Image should be in jpg, jpeg, png or webp format!");
+                }
+                else if(this.responseText == "upload_failed")
+                {
+                    alert("error", "Image upload failed. Server down!");
+                }
+                else if(this.responseText == "mail_failed")
+                {
+                    alert("error", "Mail send failed. Server down!");
+                }
+                else if(this.responseText == 1)
+                {
+                    alert("success", "We sent you an email with verification link. Confirm your account!");
+                    register_form.reset();
+                }
+                else 
+                {
+                    alert("error", "Server down!");
+                }
+            }
+
+            xhr.send(form_data);
+        })
+    </script>
+
     <script>
         function activeMenu()
         {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2025 at 06:54 PM
+-- Generation Time: Mar 06, 2025 at 12:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,8 +104,10 @@ CREATE TABLE `facilities` (
 --
 
 INSERT INTO `facilities` (`id`, `facility_icon`, `facility_name`, `facility_desc`) VALUES
-(2, 'IMG_23576.svg', 'Wifi', 'description'),
-(3, 'IMG_95747.svg', 'Wifi 2', 'abvavavdbkvdab adbkdvbkdavb dab');
+(4, 'IMG_75759.svg', 'Television', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.'),
+(5, 'IMG_12816.svg', 'Air-Conditioner', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.'),
+(6, 'IMG_98845.svg', 'Room Heater', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.'),
+(7, 'IMG_82025.svg', 'Wifi', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.');
 
 -- --------------------------------------------------------
 
@@ -123,9 +125,9 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `feature_name`) VALUES
-(6, '1 beed'),
-(7, '2 sofa'),
-(8, '1 balcony');
+(9, 'Bedroom'),
+(10, 'Balcony'),
+(11, 'Bathroom');
 
 -- --------------------------------------------------------
 
@@ -144,8 +146,17 @@ CREATE TABLE `room-facilities` (
 --
 
 INSERT INTO `room-facilities` (`id`, `room_id`, `facilities_id`) VALUES
-(23, 13, 2),
-(24, 13, 3);
+(28, 14, 4),
+(29, 14, 5),
+(30, 14, 7),
+(31, 15, 4),
+(32, 15, 5),
+(33, 15, 6),
+(34, 15, 7),
+(35, 16, 4),
+(36, 16, 5),
+(37, 16, 6),
+(38, 16, 7);
 
 -- --------------------------------------------------------
 
@@ -173,7 +184,10 @@ CREATE TABLE `rooms` (
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
 (11, 'Simple Room2', 1512, 122, 122, 12, 12, 'vvav avdvdvad22', 1, 1),
 (12, 'simple room 2q', 12, 12, 45, 45, 4, 'dav avdda adv', 1, 1),
-(13, 'Simple room 1', 45, 200, 12, 2, 1, 'AV avbkbva vdabvdb vadbkvad', 1, 0);
+(13, 'Simple room 1', 45, 200, 12, 2, 1, 'AV avbkbva vdabvdb vadbkvad', 1, 1),
+(14, 'Simple', 30, 500, 12, 3, 2, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
+(15, 'Delux', 60, 800, 20, 8, 5, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
+(16, 'Supreme', 100, 1200, 15, 12, 8, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -192,8 +206,15 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`id`, `room_id`, `feature_id`) VALUES
-(34, 13, 6),
-(35, 13, 7);
+(40, 14, 9),
+(41, 14, 10),
+(42, 14, 11),
+(43, 15, 9),
+(44, 15, 10),
+(45, 15, 11),
+(46, 16, 9),
+(47, 16, 10),
+(48, 16, 11);
 
 -- --------------------------------------------------------
 
@@ -207,6 +228,17 @@ CREATE TABLE `room_image` (
   `image` varchar(100) NOT NULL,
   `thumb` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_image`
+--
+
+INSERT INTO `room_image` (`id`, `room_id`, `image`, `thumb`) VALUES
+(11, 16, 'IMG_15075.jpg', 1),
+(12, 16, 'IMG_21204.jpg', 0),
+(13, 15, 'IMG_47668.jpg', 1),
+(14, 15, 'IMG_48012.jpg', 0),
+(15, 14, 'IMG_39315.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -251,6 +283,36 @@ INSERT INTO `team_details` (`id`, `member_name`, `member_picture`) VALUES
 (8, 'Jahir Rayhan', 'IMG_63928.jpg'),
 (9, NULL, NULL),
 (10, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_cred`
+--
+
+CREATE TABLE `user_cred` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` varchar(100) NOT NULL,
+  `picture` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `pincode` int(50) NOT NULL,
+  `dob` date NOT NULL,
+  `pass` varchar(200) NOT NULL,
+  `is_verified` tinyint(4) NOT NULL DEFAULT 0,
+  `token` varchar(255) DEFAULT NULL,
+  `token_exp` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `date_time` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_cred`
+--
+
+INSERT INTO `user_cred` (`id`, `name`, `email`, `phone_number`, `picture`, `address`, `pincode`, `dob`, `pass`, `is_verified`, `token`, `token_exp`, `status`, `date_time`) VALUES
+(4, 'ZIA UDDIN BABLU', 'test12web2000@gmail.com', '8756452654', 'IMG_71356.jpeg', 'Feni, Bangladesh\r\nBangladesh', 35004, '2025-03-19', '$2y$10$jOwb.cHLamcWGqusstrRYeSjy2jKkjIehVxOwZC5qO7dzE6anVf4C', 1, '8910ca3589150d417fb79d6daf0be292', NULL, 1, '2025-03-06');
 
 -- --------------------------------------------------------
 
@@ -343,6 +405,12 @@ ALTER TABLE `team_details`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_queries`
 --
 ALTER TABLE `user_queries`
@@ -374,37 +442,37 @@ ALTER TABLE `contacts_det`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `room-facilities`
 --
 ALTER TABLE `room-facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `room_image`
 --
 ALTER TABLE `room_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -419,28 +487,16 @@ ALTER TABLE `team_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `user_cred`
+--
+ALTER TABLE `user_cred`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `user_queries`
 --
 ALTER TABLE `user_queries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `room-facilities`
---
-ALTER TABLE `room-facilities`
-  ADD CONSTRAINT `facilities-id` FOREIGN KEY (`facilities_id`) REFERENCES `facilities` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `room-id-2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
-
---
--- Constraints for table `room_features`
---
-ALTER TABLE `room_features`
-  ADD CONSTRAINT `feature-id` FOREIGN KEY (`feature_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `room-id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

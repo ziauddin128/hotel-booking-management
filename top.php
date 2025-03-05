@@ -99,7 +99,7 @@
     <!-- register modal -->
     <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg">
-            <form>
+            <form id="register_form">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 d-flex align-items-center">
@@ -117,40 +117,40 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6 mb-3 ps-0">
-                                    <label for="" class="form-label">Name</label>
-                                    <input type="text" class="form-control shadow-none" name="name">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control shadow-none" name="name" required>
                                 </div>
                                 <div class="col-md-6 mb-3 p-0">
-                                    <label for="" class="form-label">Email</label>
-                                    <input type="email" class="form-control shadow-none" name="email">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control shadow-none" name="email" required>
                                 </div>
                                 <div class="col-md-6 mb-3 ps-0">
-                                    <label for="" class="form-label">Phone Number</label>
-                                    <input type="number" class="form-control shadow-none" name="phone_number">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="number" class="form-control shadow-none" name="phone_number" required>
                                 </div>
                                 <div class="col-md-6 mb-3 p-0">
-                                    <label for="" class="form-label">Picture</label>
-                                    <input type="file" class="form-control shadow-none">
+                                    <label class="form-label">Picture</label>
+                                    <input type="file" accept=".jpg, .jpeg, .png, .webp" class="form-control shadow-none" name="picture" required>
                                 </div>
                                 <div class="col-md-12 mb-3 p-0">
-                                    <label for="" class="form-label">Address</label>
-                                    <textarea class="form-control shadow-none" rows="2"></textarea>
+                                    <label class="form-label">Address</label>
+                                    <textarea class="form-control shadow-none" rows="2" name="address" required></textarea>
                                 </div>
                                 <div class="col-md-6 mb-3 ps-0">
-                                    <label for="" class="form-label">Pincode</label>
-                                    <input type="number" class="form-control shadow-none" name="phone_number">
+                                    <label class="form-label">Pincode</label>
+                                    <input type="number" class="form-control shadow-none" name="pincode" required>
                                 </div>
                                 <div class="col-md-6 mb-3 p-0">
-                                    <label for="" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control shadow-none">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control shadow-none" name="dob" required>
                                 </div>
                                 <div class="col-md-6 mb-3 ps-0">
-                                    <label for="" class="form-label">Password</label>
-                                    <input type="password" class="form-control shadow-none" name="phone_number">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control shadow-none" name="pass" required>
                                 </div>
                                 <div class="col-md-6 mb-3 p-0">
-                                    <label for="" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control shadow-none">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control shadow-none" name="cpass" required>
                                 </div>
                             </div>
 

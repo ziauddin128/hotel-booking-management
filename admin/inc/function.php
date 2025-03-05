@@ -1,10 +1,10 @@
 <?php 
 
 // for front-end image 
-
 define('SITE_PATH', "http://localhost/hotel/");
-
 define('IMAGE_PATH', SITE_PATH."assets/images/");
+
+define("COMPANY_NAME","Hotel Management");
 
 // for backend image upload
 
@@ -111,6 +111,48 @@ function deleteImage($image, $folder)
     {
         return false;
     }
+}
+
+function upload_user_image($image)
+{
+    $valid_mime = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'];
+    $img_mime = $image['type'];
+
+    if(!in_array($img_mime, $valid_mime))
+    {
+        return 'invalid_format'; //Invalid image format or mime
+    }
+    else 
+    {
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $file_name = "IMG_".rand(10000,99999).".jpeg";
+        $folder_path = UPLOAD_IMAGE_PATH."users/".$file_name;
+
+        // image create and compress
+
+        if($extension == "PNG" || $extension == "png")
+        {
+           $img = imagecreatefrompng($image['tmp_name']);
+        }
+        else if($extension == "WEBP" || $extension == "webp")
+        {
+           $img = imagecreatefromwebp($image['tmp_name']);
+        }
+        else 
+        {
+           $img = imagecreatefromjpeg($image['tmp_name']);
+        }
+
+        if(imagejpeg($img, $folder_path, 75))
+        {
+            return $file_name;
+        }
+        else 
+        {
+            return 'upload_failed'; 
+        }
+    }
+
 }
 
 ?>
