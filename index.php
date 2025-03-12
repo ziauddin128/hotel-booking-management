@@ -163,7 +163,14 @@
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-evenly">
-                                    <a href="#" class="btn btn-sm text-white custom-bg">Book Now</a>
+                                    <?php 
+                                    if(!$setting_row['shutdown'])
+                                    {
+                                        ?>
+                                         <a href="#" class="btn btn-sm text-white custom-bg">Book Now</a>
+                                        <?php 
+                                    }
+                                    ?>
                                     <a href="room-details?id=<?= $room_row['id'] ?>" class="btn btn-sm btn-outline-dark">More Details</a>
                                 </div>
 
@@ -176,8 +183,9 @@
             ?>
 
             <div class="col-md-12 text-center mt-4">
-                <a href="rooms class="btn btn-sm btn-outline-dark fw-bold rounded-0">More Rooms >>></a>
+                <a href="rooms" class="btn btn-sm btn-outline-dark fw-bold rounded-0">More Rooms >>></a>
             </div>
+
         </div>
 
     </div>

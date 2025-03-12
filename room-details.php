@@ -134,7 +134,16 @@
                   <span class="badge text-bg-light text-wrap me-1 mb-1"><?= $room_row['children'] ?> Children</span>
               </div>
 
-              <a href="#" class="btn text-white custom-bg d-inline-block w-100 mb-1">Book Now</a>
+              <?php 
+                if(!$setting_row['shutdown'])
+                {
+                  ?>
+                  <a href="#" class="btn text-white custom-bg d-inline-block w-100 mb-1">Book Now</a>
+                  <?php 
+                }
+              ?>
+
+
             </div>
           </div>
           

@@ -3,8 +3,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
-                    <h3 class="h-font fw-bold mb-2">TJ HOTEL</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.</p>
+                    <h3 class="h-font fw-bold mb-2"><?= $setting_row['site_title'] ?></h3>
+                    <p><?= $setting_row['site_about'] ?></p>
                 </div>
                 <div class="col-md-4">
                     <h3>Quick Links</h3>

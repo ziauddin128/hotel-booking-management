@@ -151,7 +151,16 @@
                               <div class="col-lg-2 mt-3 mt-lg-0">
                                   <div class="text-center">
                                       <h6 class="mb-4">$<?= $room_row['price'] ?> per night</h6>
-                                      <a href="#" class="btn text-white custom-bg d-inline-block w-100 mb-2">Book Now</a>
+
+                                      <?php 
+                                      if(!$setting_row['shutdown'])
+                                      {
+                                        ?>
+                                        <a href="#" class="btn text-white custom-bg d-inline-block w-100 mb-2">Book Now</a>
+                                        <?php 
+                                      }
+                                      ?>
+
                                       <a href="room-details?id=<?= $room_row['id'] ?>" class="btn btn-outline-dark d-inline-block w-100">More Details</a>
                                   </div>
                               </div>

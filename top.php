@@ -9,6 +9,12 @@
     $values = [1];
     $contact_res = select($sql, $data_types, $values);
     $contact_row = $contact_res->fetch_assoc();
+
+
+    //setting 
+
+    $setting_res = select("SELECT * FROM `settings` WHERE `id` = ?", 'i', [1]);
+    $setting_row = $setting_res->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJ Hotel</title>
+    <title><?= $setting_row['site_title'] ?></title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,10 +33,18 @@
 </head>
 <body class="bg-light">
 
+     
+    <?php 
+    if($setting_row['shutdown'])
+    {
+        echo "<div class='bg-danger text-white p-2 text-center fw-bold'><i class='bi bi-exclamation-triangle-fill'></i> Booking are temporary shutdown</div>";
+    }
+    ?>
+
     <!-- nav bar -->
     <nav id="nav-bar" class="navbar navbar-expand-lg bg-white px-lg-4 py-lg-2 shadow-sm sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand h-font fs-3 fw-bold me-5" href="index">TJ HOTEL</a>
+            <a class="navbar-brand h-font fs-3 fw-bold me-5" href="index"><?= $setting_row['site_title'] ?></a>
             <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
             </button>
