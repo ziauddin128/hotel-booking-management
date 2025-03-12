@@ -57,9 +57,33 @@
                     </li>
                 </ul>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <button class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 
-                    <button class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                    <?php 
+                       if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] === true)
+                       {
+                        ?>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img src="<?= IMAGE_PATH ?>users/<?= $_SESSION['USER_PIC'] ?>" style="width : 40px; height: 40px; object-fit: contain"> <?= $_SESSION['USER_NAME']  ?>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                    <li><button class="dropdown-item" type="button">Profile</button></li>
+                                    <li><button class="dropdown-item" type="button">Booking</button></li>
+                                    <li><a href="logout" class="dropdown-item" type="button">Logout</a></li>
+                                </ul>
+                            </div>
+                        <?php 
+                       } 
+                       else 
+                       {
+                         ?>
+                            <button class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                            <button class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                         <?php 
+                       }
+                    ?>
+
+                   
                 </div>
             </div>
         </div>
@@ -68,7 +92,7 @@
     <!-- login modal -->
     <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
-            <form>
+            <form id="login_form">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 d-flex align-items-center">
@@ -79,22 +103,53 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <label class="form-label">Email / Mobile</label>
+                            <input type="text" class="form-control shadow-none" name="email_mob" required>
                         </div>
                         <div class="mb-4">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control shadow-none" name="password" required>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <button type="submit" class="btn btn-dark shadow-none">Login</button>
-                            <a href="#" class="text-secondary text-decoration-none">Forgot Password?</a>
+
+                            <button type="button" class="btn outline-none shadow-none text-secondary text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgetModal"  data-bs-dismiss="modal">Forgot Password?</button>
+                            
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- forgot modal -->
+
+    <div class="modal fade" id="forgetModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+            <form id="forgot_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 d-flex align-items-center">
+                        <i class="bi bi-shield-lock fs-3 me-2"></i>
+                        Recover Password
+                        </h1>
+                        <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control shadow-none" name="email" required>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <button type="reset" class="btn outline-none shadow-none text-secondary text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal"  data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-dark shadow-none">Send Link</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <!-- register modal -->
     <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">

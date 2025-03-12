@@ -338,7 +338,6 @@
     });
 </script>
 
-
 <!-- reach us -->
 <section class="reach_us py-5">
     <div class="container">
@@ -383,6 +382,112 @@
 </section>
 
 
+<!-- set password -->
+<div class="modal fade" id="setPasswordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="set_pass_form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 d-flex align-items-center">
+                    <i class="bi bi-shield-lock fs-3 me-2"></i>
+                    Set New Password
+                    </h1>
+                    <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="text" class="form-control shadow-none" name="pass" required>
+
+                        <input type="hidden" name="email">
+                        <input type="hidden" name="token">
+
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button type="reset" class="btn outline-none shadow-none text-secondary text-decoration-none" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-dark shadow-none">SUBMIT</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <?php 
  require "footer.php";
 ?> 
+
+<?php 
+
+if(isset($_GET['type']) && $_GET['type'] == "reset")
+{
+    $form_data = filtration($_GET);
+
+    $t_date = date('Y-m-d');
+
+    if($t_date > $form_data['date'])
+    {
+        alert('error', "Invalid or Expired token");
+    }
+    else 
+    {
+       echo "
+       <script>
+            const modalElement = document.getElementById('setPasswordModal');
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement); 
+            modalInstance.show();
+
+            let set_pass_form = document.getElementById('set_pass_form');
+            set_pass_form.elements['email'].value = '{$form_data['email']}';
+            set_pass_form.elements['token'].value = '{$form_data['token']}';
+
+       </script>
+       "; 
+    }
+}
+
+?>
+
+<script>
+    //set new password 
+
+    set_pass_form.addEventListener("submit", function(e)
+    {
+        e.preventDefault();
+
+        let form_data = new FormData(this);
+        form_data.append("action", "set_password");
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/login_register.php");
+
+        xhr.onload = function()
+        {
+            const modalElement = document.getElementById('setPasswordModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+            modalInstance.hide();
+
+            if(this.responseText == "invalid_token")
+            {
+                alert("error", "Invalid token!");
+            }
+            else if(this.responseText == "expire_token")
+            {
+                alert("error", "Token Expired!");
+            }
+            else if(this.responseText == "success")
+            {
+                set_pass_form.reset();
+                alert("success", "Password Set Successfully!");
+            }
+            else 
+            {
+                alert("error", "Server down!");
+            }
+        }
+
+        xhr.send(form_data);
+    })
+</script>
+

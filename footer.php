@@ -45,6 +45,9 @@
 
 
     <script>
+
+        //register
+
         let register_form = document.querySelector("#register_form");
         register_form.addEventListener("submit", function(e)
         {
@@ -96,6 +99,106 @@
 
             xhr.send(form_data);
         })
+
+        //login
+
+        let login_form = document.querySelector("#login_form");
+        login_form.addEventListener("submit", function(e)
+        {
+            e.preventDefault();
+
+            let form_data = new FormData(this);
+            form_data.append("action", "login");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php");
+
+            xhr.onload = function()
+            {
+                const modalElement = document.getElementById('loginModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+                modalInstance.hide();
+
+                if(this.responseText == "invalid_email_mob")
+                {
+                    alert("error", "Mobile Or Email is invalid!");
+                }
+                else if(this.responseText == "not_verified")
+                {
+                    alert("error", "Account not verified yet!");
+                }
+                else if(this.responseText == "suspended")
+                {
+                    alert("error", "Account suspended. Contact with admin!");
+                }
+                else if(this.responseText == "invalid_pass")
+                {
+                    alert("error", "Incorrect Password!");
+                }
+                else if(this.responseText == "success")
+                {
+                    login_form.reset();
+                    window.location = window.location.pathname;
+                }
+                else 
+                {
+                    alert("error", "Server down!");
+                }
+            }
+
+            xhr.send(form_data);
+        })
+
+        //forgot form
+
+        let forgot_form = document.querySelector("#forgot_form");
+        forgot_form.addEventListener("submit", function(e)
+        {
+            e.preventDefault();
+
+            let form_data = new FormData(this);
+            form_data.append("action", "forgot_pass");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php");
+
+            xhr.onload = function()
+            {
+                const modalElement = document.getElementById('forgetModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+                modalInstance.hide();
+
+                if(this.responseText == "invalid_email")
+                {
+                    alert("error", "Email address is invalid!");
+                }
+                else if(this.responseText == "not_verified")
+                {
+                    alert("error", "Account not verified yet!");
+                }
+                else if(this.responseText == "suspended")
+                {
+                    alert("error", "Account suspended. Contact with admin!");
+                }
+                else if(this.responseText == "mail_failed")
+                {
+                    alert("error", "MaIl send failed! Server Down!");
+                }
+                else if(this.responseText == "success")
+                {
+                    forgot_form.reset();
+                    alert("success", "Reset Password link sent successfully!");
+                }
+                else 
+                {
+                    alert("error", "Server down!");
+                }
+            }
+
+            xhr.send(form_data);
+        })
+
+
     </script>
 
     <script>
