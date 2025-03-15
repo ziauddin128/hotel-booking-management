@@ -138,7 +138,16 @@
                 else if(this.responseText == "success")
                 {
                     login_form.reset();
-                    window.location = window.location.pathname;
+                    
+                    let page_name = window.location.href.split('/').pop().split('?').shift();
+                    if(page_name == "room-details")
+                    {
+                        window.location.reload();
+                    }
+                    else
+                    {
+                       window.location = window.location.pathname;
+                    }
                 }
                 else 
                 {
@@ -234,6 +243,19 @@
             </div>`;
             document.body.append(element);
         }
+
+        function checkLogin(login, room_id)
+        {
+            if(login)
+            {
+                window.location.assign('confirm-booking?id='+room_id);
+            }
+            else 
+            {
+                alert('error', 'Please login first');
+            }
+        }
+
     </script>
 </body>
 </html>

@@ -164,10 +164,15 @@
 
                                 <div class="d-flex align-items-center justify-content-evenly">
                                     <?php 
+                                    $login = 0;
                                     if(!$setting_row['shutdown'])
                                     {
+                                        if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true)
+                                        {
+                                            $login = 1;
+                                        }
                                         ?>
-                                         <a href="#" class="btn btn-sm text-white custom-bg">Book Now</a>
+                                        <button onclick="checkLogin(<?= $login ?>, <?= $room_row['id'] ?>)" class="btn btn-sm text-white custom-bg">Book Now</button>
                                         <?php 
                                     }
                                     ?>

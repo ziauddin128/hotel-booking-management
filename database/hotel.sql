@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2025 at 12:18 AM
+-- Generation Time: Mar 15, 2025 at 10:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,6 +39,62 @@ CREATE TABLE `admin_cred` (
 
 INSERT INTO `admin_cred` (`id`, `name`, `password`) VALUES
 (1, 'admin', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_details`
+--
+
+CREATE TABLE `booking_details` (
+  `id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `room_name` varchar(255) NOT NULL,
+  `price` float NOT NULL,
+  `total_pay` float NOT NULL,
+  `room_no` int(11) DEFAULT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `phone_num` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_details`
+--
+
+INSERT INTO `booking_details` (`id`, `booking_id`, `room_name`, `price`, `total_pay`, `room_no`, `user_name`, `phone_num`, `address`) VALUES
+(2, 2, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_order`
+--
+
+CREATE TABLE `booking_order` (
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `check_in` date NOT NULL,
+  `check_out` date NOT NULL,
+  `arrival` int(11) NOT NULL DEFAULT 0,
+  `refund` int(11) DEFAULT NULL,
+  `booking_status` varchar(100) NOT NULL DEFAULT 'pending',
+  `order_id` varchar(150) NOT NULL,
+  `session_id` varchar(255) NOT NULL,
+  `trans_id` varchar(255) NOT NULL,
+  `trans_amt` float NOT NULL,
+  `trans_status` varchar(100) NOT NULL DEFAULT 'pending',
+  `trans_resp_msg` varchar(255) DEFAULT NULL,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_order`
+--
+
+INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `session_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datetime`) VALUES
+(2, 5, 15, '2025-03-18', '2025-03-25', 0, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, '2025-03-15 15:23:49');
 
 -- --------------------------------------------------------
 
@@ -258,7 +314,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'TJ HOTEL', 'davv', 0);
+(1, 'TJ HOTEL', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0);
 
 -- --------------------------------------------------------
 
@@ -302,7 +358,7 @@ CREATE TABLE `user_cred` (
   `pass` varchar(200) NOT NULL,
   `is_verified` tinyint(4) NOT NULL DEFAULT 0,
   `token` varchar(255) DEFAULT NULL,
-  `token_exp` int(11) DEFAULT NULL,
+  `token_exp` date DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `date_time` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -312,7 +368,7 @@ CREATE TABLE `user_cred` (
 --
 
 INSERT INTO `user_cred` (`id`, `name`, `email`, `phone_number`, `picture`, `address`, `pincode`, `dob`, `pass`, `is_verified`, `token`, `token_exp`, `status`, `date_time`) VALUES
-(4, 'ZIA UDDIN BABLU', 'test12web2000@gmail.com', '8756452654', 'IMG_71356.jpeg', 'Feni, Bangladesh\r\nBangladesh', 35004, '2025-03-19', '$2y$10$jOwb.cHLamcWGqusstrRYeSjy2jKkjIehVxOwZC5qO7dzE6anVf4C', 1, '8910ca3589150d417fb79d6daf0be292', NULL, 1, '2025-03-06');
+(5, 'ZIA UDDIN BABLU', 'test12web2000@gmail.com', '8756452654', 'IMG_53205.jpeg', 'Feni, Bangladesh\r\nBangladesh', 35004, '2025-03-13', '$2y$10$FXQhy4SyGuCNvTgsB27yB.HFG1uJ8E5czHRojo7RUq1lR8mTldR0i', 1, NULL, NULL, 1, '2025-03-12');
 
 -- --------------------------------------------------------
 
@@ -339,6 +395,18 @@ CREATE TABLE `user_queries` (
 --
 ALTER TABLE `admin_cred`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  ADD PRIMARY KEY (`booking_id`);
 
 --
 -- Indexes for table `carousel`
@@ -427,6 +495,18 @@ ALTER TABLE `admin_cred`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
@@ -490,7 +570,7 @@ ALTER TABLE `team_details`
 -- AUTO_INCREMENT for table `user_cred`
 --
 ALTER TABLE `user_cred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_queries`

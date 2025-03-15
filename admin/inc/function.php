@@ -1,5 +1,9 @@
 <?php 
 
+// stripe API Key
+
+const STRIPE_SECRET_KEY = "sk_test_51LAJU3JChN1dztHCLoqSgQdW4u0H5MuH0Pg3rRSNlkZAdfr8Ctlf2MWNrmDkPUhtR7JL9hpyphVOvvc2AiUo3HrQ008C6jqmzT";
+
 // for front-end image 
 define('SITE_PATH', "http://localhost/hotel/");
 define('IMAGE_PATH', SITE_PATH."assets/images/");

@@ -191,6 +191,7 @@ if(isset($_POST['action']) && $_POST['action'] == "login")
                 $_SESSION['USER_NAME'] = $user_row['name'];
                 $_SESSION['USER_EMAIL'] = $user_row['email'];
                 $_SESSION['USER_PHONE'] = $user_row['phone_number'];
+                $_SESSION['USER_ADDRESS'] = $user_row['address'];
                 $_SESSION['USER_PIC'] = $user_row['picture'];
             }
             else 

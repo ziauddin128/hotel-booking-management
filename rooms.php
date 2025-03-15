@@ -153,10 +153,15 @@
                                       <h6 class="mb-4">$<?= $room_row['price'] ?> per night</h6>
 
                                       <?php 
+                                      $login = 0;
                                       if(!$setting_row['shutdown'])
                                       {
+                                        if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true)
+                                        {
+                                            $login = 1;
+                                        }
                                         ?>
-                                        <a href="#" class="btn text-white custom-bg d-inline-block w-100 mb-2">Book Now</a>
+                                        <button onclick="checkLogin(<?= $login ?>, <?= $room_row['id'] ?>)" class="btn text-white custom-bg d-inline-block w-100 mb-2">Book Now</button>
                                         <?php 
                                       }
                                       ?>
