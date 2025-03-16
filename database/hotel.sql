@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2025 at 10:32 AM
+-- Generation Time: Mar 16, 2025 at 10:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,7 +52,7 @@ CREATE TABLE `booking_details` (
   `room_name` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `total_pay` float NOT NULL,
-  `room_no` int(11) DEFAULT NULL,
+  `room_no` varchar(100) DEFAULT NULL,
   `user_name` varchar(255) NOT NULL,
   `phone_num` varchar(100) NOT NULL,
   `address` varchar(255) NOT NULL
@@ -63,7 +63,10 @@ CREATE TABLE `booking_details` (
 --
 
 INSERT INTO `booking_details` (`id`, `booking_id`, `room_name`, `price`, `total_pay`, `room_no`, `user_name`, `phone_num`, `address`) VALUES
-(2, 2, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh');
+(2, 2, 'Delux', 800, 5600, 'a5', 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(3, 3, 'Delux', 800, 1600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(4, 4, 'Supreme', 1200, 8400, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(5, 5, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,10 @@ CREATE TABLE `booking_order` (
 --
 
 INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `session_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datetime`) VALUES
-(2, 5, 15, '2025-03-18', '2025-03-25', 0, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, '2025-03-15 15:23:49');
+(2, 5, 15, '2025-03-18', '2025-03-25', 1, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, '2025-03-15 15:23:49'),
+(3, 5, 15, '2025-03-18', '2025-03-20', 0, 1, 'cancelled', '477647', 'cs_test_a1NiiaVALk3CX90bgHvVdEe873jnGBFmd63S5D7azm8NfgVsi6N7nSObwM', 'pi_3R3AkoJChN1dztHC1gJN4hRn', 1600, 'succeeded', NULL, '2025-03-16 12:33:00'),
+(4, 5, 16, '2025-03-19', '2025-03-26', 0, NULL, 'pending', '442796', 'cs_test_a1jlpgEA7QW1FjtgQmbo9oB5lTbY9mdWksJvLzx46T7DPEXnsc4Axnhy4S', '', 8400, 'pending', NULL, '2025-03-16 12:33:36'),
+(5, 5, 15, '2025-03-18', '2025-03-25', 0, NULL, 'booked', '726110', 'cs_test_a1lfr6bqvAq7AHzohVKmuRfyEGFybJYf4MYV2t8pRAixxIIiyVvPSLMZHA', 'pi_3R3AvUJChN1dztHC1lsCsRBh', 5600, 'succeeded', NULL, '2025-03-16 12:44:01');
 
 -- --------------------------------------------------------
 
@@ -498,13 +504,13 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `booking_order`
 --
 ALTER TABLE `booking_order`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `carousel`
