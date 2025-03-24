@@ -31,7 +31,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   ]],
   'mode' => 'payment',
   'success_url' => $YOUR_DOMAIN . 'pay_response?session_id={CHECKOUT_SESSION_ID}',
-  'cancel_url' => $YOUR_DOMAIN . 'pay-canceled.html',
+  'cancel_url' => $YOUR_DOMAIN . 'pay-canceled',
 ]);
 
 $session_id = $checkout_session->id;

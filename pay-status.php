@@ -40,7 +40,7 @@
                  <i class="bi bi-check-circle"></i>
                  Payment Done! Booking Successful
                  <br><br>
-                 <a href="bookings">Go to bookings</a>
+                 <a href="booking">Go to bookings</a>
                 </p>
               </div>
             data;
@@ -53,7 +53,7 @@
                   <i class="bi bi-exclamation-triangle-fill"></i>
                   Payment Failed!
                   <br><br>
-                  <a href="bookings">Go to bookings</a>
+                  <a href="booking">Go to bookings</a>
                 </p>
                 
               </div>

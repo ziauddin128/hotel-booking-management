@@ -17,7 +17,7 @@
           <i class="bi bi-exclamation-triangle-fill"></i>
           Payment Cancelled! 
           <br><br>
-          <a href="bookings">Go to bookings</a>
+          <a href="booking">Go to bookings</a>
         </p>
       </div>
     </div>

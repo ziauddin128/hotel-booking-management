@@ -12,7 +12,7 @@ if($_POST['action'] == "basic_info")
     if($result1->num_rows > 0)
     {
         echo "phone_already";
-        exit();
+        exit;
     }
 
     $query2 = "UPDATE `user_cred` SET `name`= ?,`phone_number`= ?,`address`= ?,`pincode`= ?,`dob`= ? WHERE `id` = ?";
@@ -37,12 +37,12 @@ if($_POST['action'] == "picture_update")
     if($img_res == "invalid_format")
     {
         echo "invalid_format";
-        exit();
+        exit;
     }
     else if($img_res == "upload_failed")
     {
         echo "upload_failed";
-        exit();
+        exit;
     }
 
     $query1 = "SELECT picture FROM `user_cred` WHERE `id` = ?";
@@ -75,7 +75,7 @@ if($_POST['action'] == "password_update")
     if($form_data['new_pass'] != $form_data['con_pass'])
     {
         echo "mismatch";
-        exit();
+        exit;
     }
 
     $enc_pass = password_hash($form_data['new_pass'], PASSWORD_BCRYPT);
