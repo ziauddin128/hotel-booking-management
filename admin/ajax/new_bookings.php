@@ -78,10 +78,10 @@
     $query = "UPDATE `booking_order` AS bo 
               INNER JOIN `booking_details` AS bd 
               ON bo.booking_id = bd.booking_id
-              SET bo.arrival = ?, bd.room_no = ?
+              SET bo.arrival = ?, bd.room_no = ?, bo.rate_review = ?
               WHERE bo.booking_id = ?";
-    $data_types = 'isi';
-    $values = [1, $form_data['room_no'], $form_data['booking_id']];
+    $data_types = 'isii';
+    $values = [1, $form_data['room_no'], 0, $form_data['booking_id']];
 
     $res = update($query, $data_types, $values); // it will update 2 tables 2 rows and it will return 2
 

@@ -7,7 +7,7 @@
 
         <h2 class="h-font text-center mt-5 mb-4">OUR ROOMS</h2>
 
-        <div class="row">
+        <div class="row"> 
 
             <div class="col-lg-3 mb-3 ps-lg-4">
                 <nav class="navbar navbar-expand-lg bg-white shadow rounded p-3">
@@ -136,16 +136,34 @@
                                       <span class="badge text-bg-light text-wrap me-1 mb-1"><?= $room_row['adult'] ?> Adults</span>
                                       <span class="badge text-bg-light text-wrap me-1 mb-1"><?= $room_row['children'] ?> Children</span>
                                   </div>
-                                  <div class="rating">
-                                      <h6 class="mb-1">Rating</h6>
-                                      <span class="badge text-bg-light text-wrap">
-                                          <i class="bi bi-star-fill text-warning"></i>    
-                                          <i class="bi bi-star-fill text-warning"></i>    
-                                          <i class="bi bi-star-fill text-warning"></i>    
-                                          <i class="bi bi-star-fill text-warning"></i>    
-                                          <i class="bi bi-star-fill text-warning"></i>    
-                                      </span>
-                                  </div>
+
+                                  <?php 
+                                      $room_rating = "SELECT AVG(rating) AS `total_rating` FROM `rate_review` WHERE `room_id` = ? AND `seen` = 1 ORDER BY `id` DESC LIMIT 20";
+
+                                      $room_rate_res = select($room_rating, 'i', [$room_row['id']]);
+                                      $room_rate_row = $room_rate_res->fetch_assoc();
+
+                                      if($room_rate_row['total_rating'] != NULL)
+                                      {
+                                        ?>
+                                            <div class="rating">
+                                                <h6 class="mb-1">Rating</h6>
+                                                <span class="badge text-bg-light text-wrap">
+
+                                                    <?php 
+                                                      for($i = 1; $i <= ceil($room_rate_row['total_rating']); $i++)
+                                                      {
+                                                        ?>
+                                                          <i class="bi bi-star-fill text-warning"></i>    
+                                                        <?php 
+                                                      }
+                                                    ?>
+                                                </span>
+                                            </div>
+                                        <?php 
+                                      }  
+                                  ?>
+                                  
                               </div>
 
                               <div class="col-lg-2 mt-3 mt-lg-0">

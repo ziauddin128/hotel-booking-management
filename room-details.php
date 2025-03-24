@@ -81,16 +81,32 @@
             <div class="bg-white shadow-sm rounded p-4">
               <h4 class="mb-4">$<?= $room_row['price'] ?> per night</h4>
 
-              <div class="rating mb-4">
-                  <h6 class="mb-1">Rating</h6>
-                  <span class="badge text-bg-light text-wrap">
-                      <i class="bi bi-star-fill text-warning"></i>    
-                      <i class="bi bi-star-fill text-warning"></i>    
-                      <i class="bi bi-star-fill text-warning"></i>    
-                      <i class="bi bi-star-fill text-warning"></i>    
-                      <i class="bi bi-star-fill text-warning"></i>    
-                  </span>
-              </div>
+              <?php 
+                $room_rating = "SELECT AVG(rating) AS `total_rating` FROM `rate_review` WHERE `room_id` = ? AND `seen` = 1 ORDER BY `id` DESC LIMIT 20";
+
+                $room_rate_res = select($room_rating, 'i', [$room_row['id']]);
+                $room_rate_row = $room_rate_res->fetch_assoc();
+
+                if($room_rate_row['total_rating'] != NULL)
+                {
+                  ?>
+                      <div class="rating mb-4">
+                          <h6 class="mb-1">Rating</h6>
+                          <span class="badge text-bg-light text-wrap">
+
+                              <?php 
+                                for($i = 1; $i <= ceil($room_rate_row['total_rating']); $i++)
+                                {
+                                  ?>
+                                    <i class="bi bi-star-fill text-warning"></i>    
+                                  <?php 
+                                }
+                              ?>
+                          </span>
+                      </div>
+                  <?php 
+                }  
+              ?>
 
               <div class="features mb-4">
                   <h6 class="mb-1">Features</h6>
@@ -162,20 +178,47 @@
       <div class="mt-3 mb-2">
         <h4 class="mb-3">Review-Rating</h4>
 
-        <div>
-          <div class="d-flex align-items-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-              <h5 class="m-0 ms-2">User Name 1</h5>
-          </div>
-          <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-          <div>
-              <i class="bi bi-star-fill text-warning"></i>    
-              <i class="bi bi-star-fill text-warning"></i>    
-              <i class="bi bi-star-fill text-warning"></i>    
-              <i class="bi bi-star-fill text-warning"></i>    
-              <i class="bi bi-star-fill text-warning"></i>    
-          </div>
-        </div>
+        <?php 
+          $rating_sql = "SELECT rr.*, uc.name AS uname, uc.picture AS u_picture FROM `rate_review` AS rr
+          INNER JOIN `user_cred` AS uc ON rr.user_id = uc.id
+          WHERE rr.seen = 1 AND rr.room_id = {$room_row['id']}
+          ORDER BY rr.`id` DESC LIMIT 6";
+          $rating_res = mysqli_query($conn, $rating_sql);
+          if(mysqli_num_rows($rating_res) > 0)
+          { 
+            while($rating_row = mysqli_fetch_assoc($rating_res))
+            {
+              ?>
+
+               <div class="shadow-sm mb-2 bg-white p-3 p-md-4 rounded">
+                <div class="d-flex align-items-center">
+                    <img src="<?= IMAGE_PATH ?>users/<?= $rating_row['u_picture'] ?>" loading="lazy" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
+                    <h5 class="m-0 ms-2"><?= $rating_row['uname'] ?></h5>
+                </div>
+
+                <p class="mt-4 mb-2"><?= $rating_row['review'] ?></p>
+
+                <div>
+                    <?php 
+                      for($i = 1; $i <= $rating_row['rating']; $i++)
+                      {
+                      ?>
+                      <i class="bi bi-star-fill text-warning"></i>    
+                      <?php 
+                      } 
+                  ?>  
+                </div>
+               </div>
+              
+              <?php 
+            }
+          }
+          else 
+          {
+            echo "No review yet";
+          }
+        ?>
+
 
       </div>
 

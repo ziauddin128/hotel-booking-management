@@ -63,6 +63,9 @@
                   <a class="nav-link text-white" href="user-queries">User Queries</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link text-white" href="rate-review">Rate & Review</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link text-white" href="rooms">Rooms</a>
                 </li>
                 <li class="nav-item">

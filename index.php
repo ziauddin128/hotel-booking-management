@@ -151,16 +151,32 @@
                                     <span class="badge text-bg-light text-wrap me-1 mb-1"><?= $room_row['children'] ?> Children</span>
                                 </div>
 
-                                <div class="rating mb-4">
-                                    <h6 class="mb-1">Rating</h6>
-                                    <span class="badge text-bg-light text-wrap">
-                                        <i class="bi bi-star-fill text-warning"></i>    
-                                        <i class="bi bi-star-fill text-warning"></i>    
-                                        <i class="bi bi-star-fill text-warning"></i>    
-                                        <i class="bi bi-star-fill text-warning"></i>    
-                                        <i class="bi bi-star-fill text-warning"></i>    
-                                    </span>
-                                </div>
+                                <?php 
+                                  $room_rating = "SELECT AVG(rating) AS `total_rating` FROM `rate_review` WHERE `room_id` = ? AND `seen` = 1 ORDER BY `id` DESC LIMIT 20";
+
+                                  $room_rate_res = select($room_rating, 'i', [$room_row['id']]);
+                                  $room_rate_row = $room_rate_res->fetch_assoc();
+
+                                  if($room_rate_row['total_rating'] != NULL)
+                                  {
+                                    ?>
+                                        <div class="rating mb-4">
+                                            <h6 class="mb-1">Rating</h6>
+                                            <span class="badge text-bg-light text-wrap">
+
+                                                <?php 
+                                                  for($i = 1; $i <= ceil($room_rate_row['total_rating']); $i++)
+                                                  {
+                                                    ?>
+                                                     <i class="bi bi-star-fill text-warning"></i>    
+                                                    <?php 
+                                                  }
+                                                ?>
+                                            </span>
+                                        </div>
+                                    <?php 
+                                  }  
+                                ?>
 
                                 <div class="d-flex align-items-center justify-content-evenly">
                                     <?php 
@@ -227,94 +243,62 @@
 </section>
 
 <!-- testimonial -->
-<section class="testimonial py-5">
-    <div class="container">
-        <h2 class="h-font text-center mt-5 mb-4">TESTIMONIAL</h2>
 
-        <div class="swiper testimonialSwiper">
-            <div class="swiper-wrapper mb-5">
+<?php 
+    $rating_sql = "SELECT rr.*, uc.name AS uname, uc.picture AS u_picture FROM `rate_review` AS rr
+    INNER JOIN `user_cred` AS uc ON rr.user_id = uc.id
+    WHERE rr.seen = 1
+    ORDER BY rr.`id` DESC LIMIT 6";
+    $rating_res = mysqli_query($conn, $rating_sql);
+    if(mysqli_num_rows($rating_res) > 0)
+    {
+      ?>
+        <section class="testimonial py-5">
+            <div class="container">
+                <h2 class="h-font text-center mt-5 mb-4">TESTIMONIAL</h2>
 
-                <div class="swiper-slide p-4 shadow">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-                        <h5 class="m-0 ms-2">User Name 1</h5>
-                    </div>
-                    <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-                    <div>
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                    </div>
-                </div>
+                <div class="swiper testimonialSwiper">
+                    <div class="swiper-wrapper mb-5">
 
-                <div class="swiper-slide p-4 shadow">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-                        <h5 class="m-0 ms-2">User Name 1</h5>
-                    </div>
-                    <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-                    <div>
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                    </div>
-                </div>
+                     <?php 
+                        while($rating_row = mysqli_fetch_assoc($rating_res))
+                        {
+                          ?>
+                            <div class="swiper-slide p-4 shadow">
 
-                <div class="swiper-slide p-4 shadow">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-                        <h5 class="m-0 ms-2">User Name 1</h5>
-                    </div>
-                    <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-                    <div>
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                    </div>
-                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="<?= IMAGE_PATH ?>users/<?= $rating_row['u_picture'] ?>" loading="lazy" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
+                                    <h5 class="m-0 ms-2"><?= $rating_row['uname'] ?></h5>
+                                </div>
 
-                <div class="swiper-slide p-4 shadow">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-                        <h5 class="m-0 ms-2">User Name 1</h5>
-                    </div>
-                    <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-                    <div>
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                    </div>
-                </div>
+                                <p class="mt-4 mb-2"><?= $rating_row['review'] ?></p>
 
-                <div class="swiper-slide p-4 shadow">
-                    <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAadK3kM1_f3Kwpt1WbQFeeEDJQ5cjccz8Q&s" style="height: 100px; width: 100px;object-fit: cover; object-position: center; border-radius: 50%;">
-                        <h5 class="m-0 ms-2">User Name 1</h5>
+                                <div>
+                                    <?php 
+                                       for($i = 1; $i <= $rating_row['rating']; $i++)
+                                       {
+                                        ?>
+                                        <i class="bi bi-star-fill text-warning"></i>    
+                                        <?php 
+                                       } 
+                                    ?>
+                                </div>
+
+                            </div>
+                          <?php 
+                        }
+                     ?>
+
                     </div>
-                    <p class="mt-4 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero ut animi atque non, ullam laudantium quaerat dicta expedita illum.</p>
-                    <div>
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                        <i class="bi bi-star-fill text-warning"></i>    
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
 
             </div>
-            <div class="swiper-pagination"></div>
-        </div>
+        </section>
+      <?php 
+    }
+?>
 
-    </div>
-</section>
 
 <script>
     var swiper = new Swiper(".testimonialSwiper", {

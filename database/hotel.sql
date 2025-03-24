@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2025 at 10:54 AM
+-- Generation Time: Mar 24, 2025 at 09:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,16 @@ INSERT INTO `booking_details` (`id`, `booking_id`, `room_name`, `price`, `total_
 (2, 2, 'Delux', 800, 5600, 'a5', 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
 (3, 3, 'Delux', 800, 1600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
 (4, 4, 'Supreme', 1200, 8400, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
-(5, 5, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh');
+(5, 5, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(6, 6, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(7, 7, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(8, 8, 'Supreme', 1200, 10800, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(9, 9, 'Supreme', 1200, 3600, '5', 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(10, 10, 'Supreme', 1200, 3600, '10', 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(11, 11, 'Delux', 800, 5600, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(12, 12, 'Delux', 800, 6400, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(13, 13, 'Simple', 500, 4000, NULL, 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh'),
+(14, 14, 'Simple', 500, 4000, '12', 'ZIA UDDIN BABLU', '8756452654', 'Feni, Bangladesh\r\nBangladesh');
 
 -- --------------------------------------------------------
 
@@ -89,6 +98,7 @@ CREATE TABLE `booking_order` (
   `trans_amt` float NOT NULL,
   `trans_status` varchar(100) NOT NULL DEFAULT 'pending',
   `trans_resp_msg` varchar(255) DEFAULT NULL,
+  `rate_review` int(11) DEFAULT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -96,11 +106,14 @@ CREATE TABLE `booking_order` (
 -- Dumping data for table `booking_order`
 --
 
-INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `session_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `datetime`) VALUES
-(2, 5, 15, '2025-03-18', '2025-03-25', 1, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, '2025-03-15 15:23:49'),
-(3, 5, 15, '2025-03-18', '2025-03-20', 0, 1, 'cancelled', '477647', 'cs_test_a1NiiaVALk3CX90bgHvVdEe873jnGBFmd63S5D7azm8NfgVsi6N7nSObwM', 'pi_3R3AkoJChN1dztHC1gJN4hRn', 1600, 'succeeded', NULL, '2025-03-16 12:33:00'),
-(4, 5, 16, '2025-03-19', '2025-03-26', 0, NULL, 'pending', '442796', 'cs_test_a1jlpgEA7QW1FjtgQmbo9oB5lTbY9mdWksJvLzx46T7DPEXnsc4Axnhy4S', '', 8400, 'pending', NULL, '2025-03-16 12:33:36'),
-(5, 5, 15, '2025-03-18', '2025-03-25', 0, NULL, 'booked', '726110', 'cs_test_a1lfr6bqvAq7AHzohVKmuRfyEGFybJYf4MYV2t8pRAixxIIiyVvPSLMZHA', 'pi_3R3AvUJChN1dztHC1lsCsRBh', 5600, 'succeeded', NULL, '2025-03-16 12:44:01');
+INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `session_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `rate_review`, `datetime`) VALUES
+(2, 5, 15, '2025-03-18', '2025-03-25', 1, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, 1, '2025-03-15 15:23:49'),
+(3, 5, 15, '2025-03-18', '2025-03-20', 0, 1, 'cancelled', '477647', 'cs_test_a1NiiaVALk3CX90bgHvVdEe873jnGBFmd63S5D7azm8NfgVsi6N7nSObwM', 'pi_3R3AkoJChN1dztHC1gJN4hRn', 1600, 'succeeded', NULL, NULL, '2025-03-16 12:33:00'),
+(5, 5, 15, '2025-03-18', '2025-03-25', 0, 1, 'cancelled', '726110', 'cs_test_a1lfr6bqvAq7AHzohVKmuRfyEGFybJYf4MYV2t8pRAixxIIiyVvPSLMZHA', 'pi_3R3AvUJChN1dztHC1lsCsRBh', 5600, 'succeeded', NULL, NULL, '2025-03-16 12:44:01'),
+(7, 5, 15, '2025-03-26', '2025-04-02', 0, 1, 'cancelled', '340559', 'cs_test_a1BM8vfwh69uXp0nKh0I6IE2K6Mars8RkXk6mdvXQRzumoMZNoj0GQNLPV', 'pi_3R5u21JChN1dztHC1xAGOcuf', 5600, 'succeeded', NULL, NULL, '2025-03-24 01:18:02'),
+(9, 5, 16, '2025-03-25', '2025-03-28', 1, NULL, 'booked', '577784', 'cs_test_a18oQA3x32Yvp6WiffeqX6vNw4mvPr9EPXJLYq9SZiFuwa42DE0pfU76xI', 'pi_3R6ElOJChN1dztHC0vAAExk6', 3600, 'succeeded', NULL, 1, '2025-03-24 23:26:15'),
+(10, 5, 16, '2025-03-28', '2025-03-31', 1, NULL, 'booked', '640273', 'cs_test_a1K2gvWXMWpo8ar6pDzx4SyAlDZ2OLeVaAi6wjh0gYtW2q0B42GiS3pa9T', 'pi_3R6EnFJChN1dztHC1svhxwlP', 3600, 'succeeded', NULL, 1, '2025-03-24 23:28:10'),
+(14, 5, 14, '2025-03-28', '2025-04-05', 1, NULL, 'booked', '244855', 'cs_test_a1M469HmX6Qg5nsbsyJstFvmKsn18mB1tHq83LOyypK6vusteAkIFGF6cL', 'pi_3R6GkHJChN1dztHC0UTg8IxI', 4000, 'succeeded', NULL, 1, '2025-03-25 01:33:14');
 
 -- --------------------------------------------------------
 
@@ -194,6 +207,34 @@ INSERT INTO `features` (`id`, `feature_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rate_review`
+--
+
+CREATE TABLE `rate_review` (
+  `id` int(11) NOT NULL,
+  `booking_id` int(50) NOT NULL,
+  `room_id` int(50) NOT NULL,
+  `user_id` int(50) NOT NULL,
+  `rating` int(50) NOT NULL,
+  `review` varchar(500) NOT NULL,
+  `seen` int(11) NOT NULL DEFAULT 0,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rate_review`
+--
+
+INSERT INTO `rate_review` (`id`, `booking_id`, `room_id`, `user_id`, `rating`, `review`, `seen`, `datetime`) VALUES
+(3, 9, 16, 5, 5, 'Nice Gesture', 1, '2025-03-25 02:12:21'),
+(4, 14, 14, 5, 5, 'vdadv avdva adv', 1, '2025-03-25 02:21:49'),
+(5, 10, 16, 5, 2, 'dvavdadvvad adv adv', 1, '2025-03-25 02:21:56'),
+(6, 9, 16, 5, 4, 'advdva advadv advdva', 1, '2025-03-25 02:22:02'),
+(7, 2, 15, 5, 2, 'dvaadv advdva davdva', 1, '2025-03-25 02:22:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `room-facilities`
 --
 
@@ -215,10 +256,10 @@ INSERT INTO `room-facilities` (`id`, `room_id`, `facilities_id`) VALUES
 (32, 15, 5),
 (33, 15, 6),
 (34, 15, 7),
-(35, 16, 4),
-(36, 16, 5),
-(37, 16, 6),
-(38, 16, 7);
+(39, 16, 4),
+(40, 16, 5),
+(41, 16, 6),
+(42, 16, 7);
 
 -- --------------------------------------------------------
 
@@ -249,7 +290,7 @@ INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `childr
 (13, 'Simple room 1', 45, 200, 12, 2, 1, 'AV avbkbva vdabvdb vadbkvad', 1, 1),
 (14, 'Simple', 30, 500, 12, 3, 2, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
 (15, 'Delux', 60, 800, 20, 8, 5, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
-(16, 'Supreme', 100, 1200, 15, 12, 8, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0);
+(16, 'Supreme', 100, 1200, 1, 12, 8, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -274,9 +315,9 @@ INSERT INTO `room_features` (`id`, `room_id`, `feature_id`) VALUES
 (43, 15, 9),
 (44, 15, 10),
 (45, 15, 11),
-(46, 16, 9),
-(47, 16, 10),
-(48, 16, 11);
+(49, 16, 9),
+(50, 16, 10),
+(51, 16, 11);
 
 -- --------------------------------------------------------
 
@@ -374,7 +415,7 @@ CREATE TABLE `user_cred` (
 --
 
 INSERT INTO `user_cred` (`id`, `name`, `email`, `phone_number`, `picture`, `address`, `pincode`, `dob`, `pass`, `is_verified`, `token`, `token_exp`, `status`, `date_time`) VALUES
-(5, 'ZIA UDDIN BABLU', 'test12web2000@gmail.com', '8756452654', 'IMG_53205.jpeg', 'Feni, Bangladesh\r\nBangladesh', 35004, '2025-03-13', '$2y$10$FXQhy4SyGuCNvTgsB27yB.HFG1uJ8E5czHRojo7RUq1lR8mTldR0i', 1, NULL, NULL, 1, '2025-03-12');
+(5, 'ZIA UDDIN BABLU', 'test12web2000@gmail.com', '8756452654', 'IMG_48656.jpeg', 'Feni, Bangladesh\r\nBangladesh', 35004, '2025-03-13', '$2y$10$VfcM8jCq8ffiftsVL/2eAuF0.wotIY71fJwKTszAzuPyEIAJK.unu', 1, NULL, NULL, 1, '2025-03-12');
 
 -- --------------------------------------------------------
 
@@ -436,6 +477,12 @@ ALTER TABLE `facilities`
 -- Indexes for table `features`
 --
 ALTER TABLE `features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rate_review`
+--
+ALTER TABLE `rate_review`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -504,13 +551,13 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `booking_order`
 --
 ALTER TABLE `booking_order`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `carousel`
@@ -537,10 +584,16 @@ ALTER TABLE `features`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `rate_review`
+--
+ALTER TABLE `rate_review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `room-facilities`
 --
 ALTER TABLE `room-facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -552,7 +605,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `room_image`

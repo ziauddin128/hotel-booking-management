@@ -49,10 +49,14 @@
               {
                 $btn = '<a href="generate-pdf?gen_pdf&id='.$row['booking_id'].'" class="btn btn-dark btn-sm shadow-none">
                          Download PDF
-                      </a>  
-                      <button type="button" class="btn btn-dark btn-sm shadow-none">
-                         Rate & Review
-                      </button>';
+                      </a>';
+                if($row['rate_review'] == 0)
+                {
+                  $btn .= '<button type="button" onclick="review_id_set('.$row['booking_id'].', '.$row['room_id'].')" class="btn btn-dark btn-sm shadow-none ms-2" data-bs-toggle="modal" data-bs-target="#rateModal">
+                        Rate & Review
+                    </button>';
+                }
+
               }
               else 
               {
@@ -120,6 +124,48 @@
   </div>
 </section>
 
+
+<!-- rate modal -->
+<div class="modal fade" id="rateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog">
+      <form id="rate_form">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5 d-flex align-items-center">
+                  <i class="bi bi-chat-square-heart-fill fs-3 me-2"></i>
+                  Rate & Review
+                  </h1>
+                  <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="mb-3">
+                      <label class="form-label">Rate</label>
+                      <select name="rate" class="form-select shadow-none">
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Ok</option>
+                        <option value="2">Poor</option>
+                        <option value="1">Bad</option>
+                      </select>
+                  </div>
+                  <div class="mb-4">
+                      <label class="form-label">Review</label>
+                      <textarea name="review" class="form-control shadow-none" required></textarea>
+                  </div>
+
+                  <input type="hidden" name="booking_id">
+                  <input type="hidden" name="room_id">
+
+                  <div class="d-flex align-items-center justify-content-end">
+                      <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
+
 <?php 
 
 if (isset($_GET['cancel_booking'])) 
@@ -129,6 +175,11 @@ if (isset($_GET['cancel_booking']))
   } else {
       alert('error', 'Booking cancel failed');
   }
+}
+
+if (isset($_GET['rate'])) 
+{
+  alert('success', 'Thank you for Rate & Review');
 }
 
 ?>
@@ -158,6 +209,44 @@ if (isset($_GET['cancel_booking']))
       xhr.send('action=cancel_booking&id='+id);
     }
   }
+
+  let rate_form = document.querySelector("#rate_form");
+
+  function review_id_set(booking_id, room_id)
+  {
+    rate_form.elements['booking_id'].value = booking_id;
+    rate_form.elements['room_id'].value = room_id;
+  }
+
+  rate_form.addEventListener("submit", function(event)
+  {
+    event.preventDefault();
+
+    let form_data = new FormData(this);
+    form_data.append("action", "rate_review");
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/rate_review.php");
+
+    xhr.onload = function()
+    {
+      const modalElement = document.getElementById('rateModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement); 
+      modalInstance.hide();
+
+      if(this.responseText == 1)
+      {
+        window.location.href = "booking?rate=true";
+        rate_form.reset();
+      }
+      else 
+      {
+        alert("error", "Rating failed! Server Down!");
+      }
+    }
+    xhr.send(form_data);
+    
+  })
 </script>
 
 <?php 
