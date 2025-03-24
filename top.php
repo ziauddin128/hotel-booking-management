@@ -81,8 +81,8 @@
                                     <img src="<?= IMAGE_PATH ?>users/<?= $_SESSION['USER_PIC'] ?>" style="width : 40px; height: 40px; object-fit: contain"> <?= $_SESSION['USER_NAME']  ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><button class="dropdown-item" type="button">Profile</button></li>
-                                    <li><button class="dropdown-item" type="button">Booking</button></li>
+                                    <li><a href="profile" class="dropdown-item" type="button">Profile</a></li>
+                                    <li><a href="booking" class="dropdown-item" type="button">Booking</a></li>
                                     <li><a href="logout" class="dropdown-item" type="button">Logout</a></li>
                                 </ul>
                             </div>
