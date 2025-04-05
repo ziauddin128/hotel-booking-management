@@ -40,35 +40,60 @@
     <div class="container">
         <div class="bg-white shadow p-4 rounded">
             <h1 class="mb-4 fs-5" style="font-weight: 500;">Check Booking Availability</h1> 
-            <div class="row align-items-end">
-                <div class="col-lg-3 mb-3">
-                <label for="" class="form-label">Check-in</label>
-                <input type="date" class="form-control shadow-none">
+
+            <form action="rooms.php">
+                <div class="row align-items-end">
+                    <div class="col-lg-3 mb-3">
+                      <label class="form-label">Check-in</label>
+                      <input type="date" class="form-control shadow-none" name="checkin" required>
+                    </div>
+                    <div class="col-lg-3 mb-3 ps-lg-0">
+                      <label class="form-label">Check-out</label>
+                      <input type="date" class="form-control shadow-none" name="checkout" required>
+                    </div>
+
+                    <?php 
+                      $guest_max_q = "SELECT MAX(`adult`) AS `max_adult`, MAX(`children`) AS `max_children` FROM `rooms` WHERE `status` = '1' AND `removed` = 0";
+                      $guest_max_res = mysqli_query($conn, $guest_max_q);
+                      $guest_max_row = mysqli_fetch_assoc($guest_max_res);
+                    ?>
+
+                    <div class="col-lg-3 mb-3 ps-lg-0">
+                        <label class="form-label">Adults</label>
+                        <select class="form-select shadow-none" name="adults">
+                            <?php 
+                              for ($i=1; $i <= $guest_max_row['max_adult']; $i++) 
+                              { 
+                                ?>
+                                 <option value="<?= $i ?>"><?= $i ?></option>
+                                <?php 
+                              }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 mb-3 ps-lg-0">
+                        <label class="form-label">Children</label>
+                        <select class="form-select shadow-none" name="children">
+                            <?php 
+                              for ($i=1; $i <= $guest_max_row['max_children']; $i++) 
+                              { 
+                                ?>
+                                 <option value="<?= $i ?>"><?= $i ?></option>
+                                <?php 
+                              }
+                            ?>
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="check_availability">
+
+                    <div class="col-lg-1 mb-lg-3 mt-2 mt-lg-0 ps-lg-0">
+                       <button class="btn text-white shadow-none custom-bg">Submit</button>
+                    </div>
                 </div>
-                <div class="col-lg-3 mb-3 ps-lg-0">
-                <label for="" class="form-label">Check-out</label>
-                <input type="date" class="form-control shadow-none">
-                </div>
-                <div class="col-lg-3 mb-3 ps-lg-0">
-                <label for="" class="form-label">Adults</label>
-                <select class="form-select shadow-none">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                </div>
-                <div class="col-lg-2 mb-3 ps-lg-0">
-                <label for="" class="form-label">Children</label>
-                <select class="form-select shadow-none">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                </div>
-                <div class="col-lg-1 mb-lg-3 mt-2 mt-lg-0 ps-lg-0">
-                <button class="btn text-white shadow-none custom-bg">Submit</button>
-                </div>
-            </div>
+            </form>
+
+
         </div>
     </div>
 </section>
