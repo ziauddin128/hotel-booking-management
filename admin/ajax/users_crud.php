@@ -44,7 +44,7 @@
         <td>'.$row['dob'].'</td>
         <td>'.$v_btn.'</td>
         <td>'.$s_btn.'</td>
-        <td>'.date('d-m-Y', strtotime($row['date_time'])).'</td>
+        <td>'.date('d-m-Y', strtotime($row['datetime'])).'</td>
         <td>
           <button class="btn btn-danger shadow-none" title="Delete" onclick="user_remove('.$row['id'].')"><i class="bi bi-trash"></i></button>
         </td>

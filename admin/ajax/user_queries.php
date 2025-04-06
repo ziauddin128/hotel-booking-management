@@ -27,7 +27,7 @@
                   <td>'.$row['email'].'</td>
                   <td>'.$row['subject'].'</td>
                   <td>'.$row['message'].'</td>
-                  <td>'.$row['date'].'</td>
+                  <td>'.date('d-m-Y', strtotime($row['datetime'])).'</td>
                   <td>'.$seen.'</td>
                 </tr>';
 
