@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2025 at 09:22 AM
+-- Generation Time: Apr 06, 2025 at 04:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -108,7 +108,7 @@ CREATE TABLE `booking_order` (
 --
 
 INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `session_id`, `trans_id`, `trans_amt`, `trans_status`, `trans_resp_msg`, `rate_review`, `datetime`) VALUES
-(2, 5, 15, '2025-03-18', '2025-03-25', 1, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, 1, '2024-03-15 15:23:49'),
+(2, 5, 15, '2025-03-18', '2025-03-25', 1, NULL, 'booked', '933746', 'cs_test_a1UWkxmOUbZMxMrQLI9JoilrFltAhVAc2RAZN2zxG7DjsG5P8gzD9pUGMG', 'pi_3R2qwaJChN1dztHC0S7cqqqb', 5600, 'succeeded', NULL, NULL, '2024-03-15 15:23:49'),
 (3, 5, 15, '2025-03-18', '2025-03-20', 0, 1, 'cancelled', '477647', 'cs_test_a1NiiaVALk3CX90bgHvVdEe873jnGBFmd63S5D7azm8NfgVsi6N7nSObwM', 'pi_3R3AkoJChN1dztHC1gJN4hRn', 1600, 'succeeded', NULL, NULL, '2025-03-16 12:33:00'),
 (5, 5, 15, '2025-03-18', '2025-03-25', 0, 1, 'cancelled', '726110', 'cs_test_a1lfr6bqvAq7AHzohVKmuRfyEGFybJYf4MYV2t8pRAixxIIiyVvPSLMZHA', 'pi_3R3AvUJChN1dztHC1lsCsRBh', 5600, 'succeeded', NULL, NULL, '2025-03-16 12:44:01'),
 (7, 5, 15, '2025-03-26', '2025-04-02', 0, 1, 'cancelled', '340559', 'cs_test_a1BM8vfwh69uXp0nKh0I6IE2K6Mars8RkXk6mdvXQRzumoMZNoj0GQNLPV', 'pi_3R5u21JChN1dztHC1xAGOcuf', 5600, 'succeeded', NULL, NULL, '2025-03-24 01:18:02'),
@@ -161,7 +161,7 @@ CREATE TABLE `contacts_det` (
 --
 
 INSERT INTO `contacts_det` (`id`, `address`, `gmap`, `phn1`, `phn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'Dhaka, Bangladesh', 'https://maps.app.goo.gl/TpuEg8M3yca15Uz17', '+8801578457845', '+8801578457846', 'tjhotel@gmail.com', 'https://www.fb.com/tjhotel', 'https://www.instagram.com/tjhotel', 'https://www.twitter.com/tjhotel', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17574.9557016029!2d91.39517049999999!3d23.03082315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753685a3edbeb99%3A0x319f9ae6bf1bfd99!2sReverse%20Club%20Ground!5e1!3m2!1sen!2sbd!4v1740684136665!5m2!1sen!2sbd');
+(1, 'Dhaka, Bangladesh', 'https://maps.app.goo.gl/TpuEg8M3yca15Uz17', '+8801578457845', '+8801578457846', 'hotel_relax@gmail.com', 'https://www.fb.com/hotel_relax', 'https://www.instagram.com/hotel_relax', 'https://www.twitter.com/hotel_relax', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17574.9557016029!2d91.39517049999999!3d23.03082315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753685a3edbeb99%3A0x319f9ae6bf1bfd99!2sReverse%20Club%20Ground!5e1!3m2!1sen!2sbd!4v1740684136665!5m2!1sen!2sbd');
 
 -- --------------------------------------------------------
 
@@ -229,9 +229,9 @@ CREATE TABLE `rate_review` (
 
 INSERT INTO `rate_review` (`id`, `booking_id`, `room_id`, `user_id`, `rating`, `review`, `seen`, `datetime`) VALUES
 (3, 9, 16, 5, 5, 'Nice Gesture', 1, '2025-03-25 02:12:21'),
-(4, 14, 14, 5, 5, 'vdadv avdva adv', 1, '2025-03-25 02:21:49'),
-(6, 9, 16, 5, 4, 'advdva advadv advdva', 1, '2025-03-25 02:22:02'),
-(7, 2, 15, 5, 2, 'dvaadv advdva davdva', 1, '2025-03-25 02:22:07');
+(8, 14, 14, 5, 5, 'Super easy booking, great stay!', 1, '2025-04-06 19:59:02'),
+(9, 10, 16, 5, 5, 'Smooth booking, perfect room!', 1, '2025-04-06 19:59:10'),
+(10, 9, 16, 5, 5, 'Flawless booking, great service!', 1, '2025-04-06 19:59:17');
 
 -- --------------------------------------------------------
 
@@ -286,9 +286,6 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
-(11, 'Simple Room2', 1512, 122, 122, 12, 12, 'vvav avdvdvad22', 1, 1),
-(12, 'simple room 2q', 12, 12, 45, 45, 4, 'dav avdda adv', 1, 1),
-(13, 'Simple room 1', 45, 200, 12, 2, 1, 'AV avbkbva vdabvdb vadbkvad', 1, 1),
 (14, 'Simple', 30, 500, 12, 3, 2, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
 (15, 'Delux', 60, 800, 20, 8, 5, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0),
 (16, 'Supreme', 100, 1200, 1, 2, 2, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur hic aliquam reiciendis ea explicabo maiores illum eius suscipit aliquid iusto.', 1, 0);
@@ -362,7 +359,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'TJ HOTEL', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0);
+(1, 'HOTEL RELAX', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&amp;amp;amp;#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0);
 
 -- --------------------------------------------------------
 
@@ -595,7 +592,7 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `rate_review`
 --
 ALTER TABLE `rate_review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `room-facilities`

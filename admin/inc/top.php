@@ -3,6 +3,12 @@
   require "inc/function.php";
 
   adminLogin();
+
+  //setting 
+
+  $setting_res = select("SELECT * FROM `settings` WHERE `id` = ?", 'i', [1]);
+  $setting_row = $setting_res->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +16,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title><?= $setting_row['site_title'] ?> | Admin</title>
     <?php require "inc/links.php"; ?>
 </head>
 <body class="bg-light">
 
   <!-- top bar -->
   <section class="container-fluid py-2 bg-dark text-white d-flex align-items-center justify-content-between position-sticky top-0 z-2">
-    <a href="#" class="h-font text-white fs-3 text-decoration-none">TJ HOTEL</a>
+    <a href="dashboard" class="h-font text-white fs-3 text-decoration-none"><?= $setting_row['site_title'] ?></a>
     <a href="logout" class="btn btn-light btn-sm">Logout</a>
   </section>  
 
