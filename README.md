@@ -3,8 +3,13 @@ Welcome to HOTEL RELAX, a modern and user-friendly hotel booking platform.
 This project is designed to provide a seamless experience for users to explore, view details, and book hotel rooms securely. It also includes a powerful admin dashboard to manage bookings, rooms, and users efficiently.
 
 📸 Screenshots
-[![All Rooms](./screenshot/admin-dashboard.png)](./screenshot/booking.png)
-
+[![Home](./screenshot/home.png)](./screenshot/home.png)
+[![Register](./screenshot/register.png)](./screenshot/register.png)
+[![Rooms](./screenshot/rooms.png)](./screenshot/rooms.png)
+[![Room-Detail](./screenshot/room-details.png)](./screenshot/room-details.png)
+[![Facilities](./screenshot/facilities.png)](./screenshot/facilities.png)
+[![Contact](./screenshot/contact.png)](./screenshot/contact.png)
+[![Admin-Dashboard](./screenshot/admin-dashboard.png)](./screenshot/booking.png)
 
 ✨ Features
 
