@@ -1,4 +1,4 @@
-🏨 HOTEL RELAX – Hotel Booking Website
+# 🏨 HOTEL RELAX – Hotel Booking Website <br>
 Welcome to HOTEL RELAX, a modern and user-friendly hotel booking platform.
 This project is designed to provide a seamless experience for users to explore, view details, and book hotel rooms securely. It also includes a powerful admin dashboard to manage bookings, rooms, and users efficiently.
 
